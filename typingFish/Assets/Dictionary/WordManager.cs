@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -17,7 +18,8 @@ public class WordManager : MonoBehaviour
     [SerializeField] List<Word> learnedWords;
 
 
-    public Word GetWord(string wordValue)
+	#region GET WORD
+	public Word GetWord(string wordValue)
     {
         return GetWord(wordValue, allWords);
     }
@@ -41,7 +43,9 @@ public class WordManager : MonoBehaviour
         return null;
     }
 
+	#endregion
 
+	#region GET WORDS
 	public List<Word> GetWords(bool wordsLearned)
 	{
 		if (wordsLearned)
@@ -74,8 +78,157 @@ public class WordManager : MonoBehaviour
 
         return wordsOfDifficulty;
     }
+	#endregion
 
-    void ClearWords()
+	#region GET RANDOM WORD
+
+    public Word GetRandomWord()
+    {
+        return GetRandomWord(allWords);
+    }
+
+    public Word GetRandomWord(bool hasLearned)
+    {
+        if (hasLearned)
+            return GetRandomWord(learnedWords);
+        else
+            return GetRandomWord(learningWords);
+    }
+
+    public Word GetRandomWord(WordDifficulty wordDifficulty)
+    {
+        bool hasDifficulty = false;
+
+        foreach(Word word in allWords)
+        {
+            if (word.difficulty == wordDifficulty)
+                hasDifficulty = true;
+        }
+
+        if (!hasDifficulty)
+            return null;
+
+        Word randomWord = new Word();
+        bool isDifficulty = false;
+
+        while(!isDifficulty)
+        {
+            randomWord = GetRandomWord(allWords);
+
+            if(newWord.difficulty == wordDifficulty))
+                isDifficulty = true;
+        }
+
+        return randomWord;
+    }
+
+    public Word GetRandomWord(bool hasLearned, WordDifficulty wordDifficulty)
+    {
+        if (hasLearned)
+            return GetRandomWord(wordDifficulty, learnedWords);
+        else
+            return GetRandomWord(learningWords);
+    }
+
+    public Word GetRandomWord(WordDifficulty wordDifficulty, List<Word>, wordList)
+    {
+		bool hasDifficulty = false;
+
+		foreach (Word word in wordList)
+		{
+			if (word.difficulty == wordDifficulty)
+				hasDifficulty = true;
+		}
+
+		if (!hasDifficulty)
+			return null;
+
+		Word randomWord = new Word();
+		bool isDifficulty = false;
+
+		while (!isDifficulty)
+		{
+			randomWord = GetRandomWord(wordList);
+
+			if (newWord.difficulty == wordDifficulty))
+                isDifficulty = true;
+		}
+
+		return randomWord;
+	}
+
+    public Word GetRandomWord(List<Word> wordList)
+    {
+        int index = Random.Range(0, wordList.Length);
+        return wordList[index];
+    }
+    #endregion
+
+	#region GET RANDOM WORDS
+    public List<Word> GetRandomWords(int amount)
+    {
+        List<Word> randomWords = new List<Word>();
+
+        for(int i - 0; i < amount; i++)
+        {
+            randomWords.Add(GetRandomWord());
+        }
+    }
+
+    public List<Word> GetRandomWords(int amount, bool hasLearned)
+    {
+        if (hasLearned)
+            return GetRandomWords(amount, learnedWords);
+        else
+            return GetRandomWords(amount, learningWords);
+    }
+
+    public List<Word> GetRandomWords(int amount, WordDifficulty worldDifficulty)
+    {
+        List<Word> randomWords = new List<Word>();
+
+        for(int i = 0; i < amount; i++)
+        {
+            randomWords.Add(GetRandomWord(worldDifficulty));
+        }
+
+        return randomWords;
+    }
+
+    public List<Word> GetRandomWords(int amount, WordDifficulty wordDifficulty, List<Word> wordList)
+    {
+        List<Word> randomWords = new List<Word>();
+
+        for(int i = 0; i < amount;i++)
+        {
+            randomWords.Add(GetRandomWord(wordDifficulty, wordList));
+        }
+
+        return randomWords;
+    }
+
+    public List<Word> GetRandomWords(int amount, bool hasLearned, WordDifficulty wordDifficulty)
+    {
+        if (hasLearned)
+            return GetRandomWords(amount, wordDifficulty, learnedWords);
+        else
+            return GetRandomWords(amount, wordDifficulty, learningWords);
+    }
+
+
+    public List<Word> GetRandomWords(int amount, List<Word> wordList)
+    {
+		List<Word> wordList = new List<Word>();
+
+		for (int i -0; i < amount; i++)
+		{
+			wordList.Add(GetRandomWord());
+		}
+	}
+
+    #endregion
+
+	void ClearWords()
     {
         allWords.Clear();
         learnedWords.Clear();

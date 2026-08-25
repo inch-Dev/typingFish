@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 
-
-
-
 public class UIManager : MonoBehaviour, IStateable
 {
     public void HandleState() 

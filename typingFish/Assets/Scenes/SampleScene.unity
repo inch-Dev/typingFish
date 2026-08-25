@@ -793,6 +793,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439089374}
   m_CullTransparentMesh: 1
+--- !u!1 &1963594166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1963594168}
+  - component: {fileID: 1963594167}
+  m_Layer: 0
+  m_Name: Word Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1963594167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963594166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea4890c0f960d34ba7d132c175ed7bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allWords: []
+  learningWords: []
+  learnedWords: []
+--- !u!4 &1963594168
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963594166}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2112681639
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,6 +904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiName: 
+  isActive: 0
   canvasGroup: {fileID: 2112681641}
   activeStates: 0
 --- !u!1001 &609113003059687601
@@ -1174,10 +1222,11 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 7095286762201225436}
   - {fileID: 7837294519708065170}
+  - {fileID: 1253123521076751315}
+  - {fileID: 7095286762201225436}
   - {fileID: 609113003059687601}
   - {fileID: 7727168663087165789}
   - {fileID: 942294088}
   - {fileID: 1430101022}
-  - {fileID: 1253123521076751315}
+  - {fileID: 1963594168}

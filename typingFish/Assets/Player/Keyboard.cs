@@ -10,6 +10,8 @@ public class Keyboard : MonoBehaviour, IStateable
 
     bool[] keys;
 
+    char curLetter;
+
     void SetKeys()
     {
         for (int i = 0; i < keyValues.Length; i++)
@@ -36,7 +38,7 @@ public class Keyboard : MonoBehaviour, IStateable
         Keystroke();
     }
 
-    void Keystroke()
+    string Keystroke()
     {
         SetKeys();
 
@@ -44,17 +46,17 @@ public class Keyboard : MonoBehaviour, IStateable
         {
             if(keys[i])
             {
-
-                //Cast to char
-
                 KeyCode activeKey = (KeyCode)keyValues[i];
 
                 if(activeKey.ToString().Length == 1 && activeKey.ToString().All(char.IsLetter))
                 {
-					Debug.Log($"Returned {(KeyCode)keyValues[i]}");
+                    curLetter = (char)activeKey;
+                    return activeKey.ToString();
+					//Debug.Log($"Returned {(KeyCode)keyValues[i]}");
 				}
-                //Send to ui for word
             }
         }
+
+        return null;
     }
 }

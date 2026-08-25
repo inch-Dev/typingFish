@@ -27,6 +27,6 @@ public class Mouse : MonoBehaviour, IStateable
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-        Debug.Log("kdjf");
+        GameManager.instance.SetState(GameState.TYPING);
 	}
 }

@@ -115,7 +115,7 @@ public class WordManager : MonoBehaviour
         {
             randomWord = GetRandomWord(allWords);
 
-            if(newWord.difficulty == wordDifficulty))
+            if(randomWord.difficulty == wordDifficulty)
                 isDifficulty = true;
         }
 
@@ -130,7 +130,7 @@ public class WordManager : MonoBehaviour
             return GetRandomWord(learningWords);
     }
 
-    public Word GetRandomWord(WordDifficulty wordDifficulty, List<Word>, wordList)
+    public Word GetRandomWord(WordDifficulty wordDifficulty, List<Word> wordList)
     {
 		bool hasDifficulty = false;
 
@@ -150,7 +150,7 @@ public class WordManager : MonoBehaviour
 		{
 			randomWord = GetRandomWord(wordList);
 
-			if (newWord.difficulty == wordDifficulty))
+			if (randomWord.difficulty == wordDifficulty)
                 isDifficulty = true;
 		}
 
@@ -159,7 +159,7 @@ public class WordManager : MonoBehaviour
 
     public Word GetRandomWord(List<Word> wordList)
     {
-        int index = Random.Range(0, wordList.Length);
+        int index = Random.Range(0, wordList.Count);
         return wordList[index];
     }
     #endregion
@@ -169,10 +169,12 @@ public class WordManager : MonoBehaviour
     {
         List<Word> randomWords = new List<Word>();
 
-        for(int i - 0; i < amount; i++)
+        for(int i = 0; i < amount; i++)
         {
             randomWords.Add(GetRandomWord());
         }
+
+        return randomWords;
     }
 
     public List<Word> GetRandomWords(int amount, bool hasLearned)
@@ -218,12 +220,14 @@ public class WordManager : MonoBehaviour
 
     public List<Word> GetRandomWords(int amount, List<Word> wordList)
     {
-		List<Word> wordList = new List<Word>();
+		List<Word> randomWords = new List<Word>();
 
-		for (int i -0; i < amount; i++)
+		for (int i = 0; i < amount; i++)
 		{
-			wordList.Add(GetRandomWord());
+			randomWords.Add(GetRandomWord());
 		}
+
+        return randomWords;
 	}
 
     #endregion

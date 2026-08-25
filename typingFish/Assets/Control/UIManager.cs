@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour, IStateable
         SetUI(GameManager.instance.GetState());
     }
     public static UIManager instance;
-    List<UI> uis;
+    [SerializeField] List<UI> uis;
     public void SetUI(GameState activeState)
     {
         foreach(UI ui in uis)

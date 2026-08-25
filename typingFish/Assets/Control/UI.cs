@@ -2,14 +2,14 @@ using UnityEngine;
 public class UI : MonoBehaviour
 {
 	public string uiName;
-	public bool isActive = false;
+	bool isActive = false;
 	public CanvasGroup canvasGroup;
 	public GameState activeStates;
 
 	public void Toggle(bool isActive)
 	{
 		this.isActive = isActive;
-		canvasGroup.enabled = isActive;
+		canvasGroup.interactable = isActive;
 		canvasGroup.blocksRaycasts = isActive;
 		canvasGroup.alpha = isActive ? 1 : 0;
 	}

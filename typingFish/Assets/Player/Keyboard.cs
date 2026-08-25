@@ -4,7 +4,16 @@ using UnityEngine;
 public class Keyboard : MonoBehaviour, IStateable
 {
     public static Keyboard instance;
-    public void HandleState() { }
+
+    public bool isActive = false;
+
+    public void HandleState() 
+    {
+        if (GameManager.instance.GetState() == GameState.TYPING)
+            isActive = true;
+        else
+            isActive = false;
+    }
 
     int[] keyValues;
 
@@ -35,7 +44,8 @@ public class Keyboard : MonoBehaviour, IStateable
     // Update is called once per frame
     void Update()
     {
-        Keystroke();
+        if(isActive)
+            Keystroke();
     }
 
     string Keystroke()
@@ -51,8 +61,8 @@ public class Keyboard : MonoBehaviour, IStateable
                 if(activeKey.ToString().Length == 1 && activeKey.ToString().All(char.IsLetter))
                 {
                     curLetter = (char)activeKey;
-                    return activeKey.ToString();
-					//Debug.Log($"Returned {(KeyCode)keyValues[i]}");
+					Debug.Log($"Returned {(KeyCode)keyValues[i]}");
+					return activeKey.ToString();
 				}
             }
         }

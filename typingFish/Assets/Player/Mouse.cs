@@ -2,12 +2,14 @@ using UnityEngine;
 
 public class Mouse : MonoBehaviour, IStateable
 {
+    public static Mouse instance;
     [SerializeField] float moveSpeed;   
     public void HandleState() { }
 
     void Start()
     {
-        
+        if (instance == null)
+            instance = this;
     }
 
     // Update is called once per frame

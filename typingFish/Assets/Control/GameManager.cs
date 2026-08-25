@@ -1,18 +1,19 @@
+using System;
 using UnityEngine;
 
-
+[Flags]
 public enum GameState
 {
-    NULL = -1,
-    FISHING,
-    TYPING,
-    PAUSED
+    NULL = 0,
+    FISHING = 1,
+    TYPING = 2,
+    PAUSED = 4,
 }
 
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager instance;
 
     GameState curState = GameState.NULL;
     public GameState GetState(){ return curState; }
@@ -20,8 +21,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (Instance == null)
-            Instance = this;
+        if (instance == null)
+            instance = this;
     }
 
     // Update is called once per frame

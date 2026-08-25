@@ -23,15 +23,6 @@ public class Mouse : MonoBehaviour, IStateable
         transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
     }
 
-
-	private void OnCollisionEnter2D(Collision2D collision)
-	{
-		if(collision.gameObject.GetComponent<Fish>())
-        {
-            Debug.Log("kdjfkddkf");
-        }
-	}
-
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
         Debug.Log("kdjf");

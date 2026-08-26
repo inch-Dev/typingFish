@@ -54,7 +54,7 @@ public class TypeManager : MonoBehaviour, IStateable
 		typeInput += newLetter;
 		TypeUI.instance.DisplayKeystrokes();
 
-		if (typeInput == learningWordValue)
+		if (typeInput == learningWordValue || typeInput.Length == learningWordValue.Length)
 			TypedWord();
 	}
 

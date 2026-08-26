@@ -22,7 +22,7 @@ public class TypeManager : MonoBehaviour, IStateable
 	Word learningWord;
 	string learningWordValue;
 
-	public void GetLearningWord(){ return learningWordValue; }
+	public string GetLearningWordValue(){ return learningWordValue; }
 
 	public void SetLearningWord(Word newWord)
 	{
@@ -34,7 +34,7 @@ public class TypeManager : MonoBehaviour, IStateable
 
 	string typeInputWord;
 
-	public void GetTypeInputWord(){ return typeInputWord; }
+	public string GetTypeInputWord(){ return typeInputWord; }
 	public void SetTypeInputWord(string newWord){ typeInputWord = newWord; }
 
 	private void Start()
@@ -62,7 +62,7 @@ public class TypeManager : MonoBehaviour, IStateable
 
 		canType = false;
 
-		learningWord.speed += timeToType
+		learningWord.speed += timeToType;
 
 		//Has typed word successfully
 		if(typeInputWord == learningWordValue)

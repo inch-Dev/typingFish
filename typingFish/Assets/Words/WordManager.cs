@@ -17,13 +17,6 @@ public class WordManager : MonoBehaviour
 
     [SerializeField] List<Word> learnedWords;
 
-
-    //MOVE TO TYPE MANAGER
-    Word curWord;
-
-    public Word GetCurrentWord(){  return curWord; }
-    public void SetCurrentWord(Word newWord){  curWord = newWord; }
-
     [SerializeField] int learnThreshold = 0;
 
 
@@ -247,7 +240,6 @@ public class WordManager : MonoBehaviour
         if (!learningWords.Contains(word))
         {
             learningWords.Add(word);
-            SetCurrentWord(word);
         }
     }
 

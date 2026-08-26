@@ -26,7 +26,10 @@ public class Mouse : MonoBehaviour, IStateable
     }
 
 	private void OnTriggerEnter2D(Collider2D collision)
-	{
-        GameManager.instance.SetState(GameState.TYPING);
+    {
+        if (collision.gameObject.GetComponentInParent<Fish>())
+        {
+            GameManager.instance.SetState(GameState.TYPING);
+        }
 	}
 }

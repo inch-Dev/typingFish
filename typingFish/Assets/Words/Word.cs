@@ -13,7 +13,7 @@ public class Word : ScriptableObject
 {
     public string value;
     public WordDifficulty difficulty;
-    [HideInInspector] public bool hasLearned = false;
+    public bool hasLearned = false;
     [HideInInspector] public float accuracy = 0.0f;
     [HideInInspector] public float speed = 0.0f;
 

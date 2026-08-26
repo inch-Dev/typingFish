@@ -11,17 +11,7 @@ public enum FishSize
 
 public class Fish : MonoBehaviour
 {
+	public Rigidbody2D rb;
 	public FishData fishData;
-}
 
-
-[CreateAssetMenu(fileName = "FishData", menuName = "ScriptableObjects/FishData", order = 2)]
-public class FishData: ScriptableObject
-{
-	[SerializeField] string fishName;
-	[SerializeField] Sprite fishSprite;
-
-	[SerializeField] FishSize fishSize;
-
-	[HideInInspector] public bool isCaught = false;
 }

@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    GameState curState = GameState.NULL;
+    [SerializeField] GameState curState = GameState.NULL;
 
     List<IStateable> stateables = new List<IStateable>();
 

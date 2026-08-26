@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5f61328c4c8fee4cac61fa40a07357d, type: 3}
-  m_Name: Word
+  m_Name: crysanthemum
   m_EditorClassIdentifier: 
-  value: Duck
-  difficulty: 0
+  value: crysanthemum
+  difficulty: 2
   hasLearned: 0
   accuracy: 0
   speed: 0
+  timesTyped: 1
+  timesEncountered: 4

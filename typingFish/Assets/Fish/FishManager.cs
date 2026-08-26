@@ -3,38 +3,68 @@ using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class FishManager : MonoBehaviour
+public class FishManager : MonoBehaviour, IStateable
 {
+    //Toggle off Fish Collision
+    public void HandleState()
+    {
+        switch(GameManager.instance.GetState())
+        {
+            case GameState.TYPING:
+				foreach (Fish fish in spawnedFish)
+				{
+					fish.rb.simulated = false;
+					Debug.Log("Typing!");
+					Debug.Log($"Type Got Component:{fish.rb}");
+				}
+				break;
+			case GameState.FISHING:
+				foreach (Fish fish in spawnedFish)
+				{
+					fish.rb.simulated = true;
+					Debug.Log("Fishing!");
+                    Debug.Log($"Fish Got Component:{fish.rb}");
+				}
+				break;
+
+		}
+    }
     public static FishManager instance;
 
     string[] fishGuids;
 
-    [SerializeField] List<Fish> allFish;
+    [SerializeField] GameObject smallFishPF;
+    [SerializeField] GameObject mediumFishPF;
+    [SerializeField] GameObject largeFishPF;
 
-    [SerializeField] List<Fish> wildFish;
+    [SerializeField] List<FishData> allFish;
 
-    [SerializeField] List<Fish> caughtFish;
+    [SerializeField] List<FishData> wildFish;
+
+    [SerializeField] List<FishData> caughtFish;
+
+    [SerializeField] List<Fish> spawnedFish;
 
 
-    public Fish GetRandomFish()
+    public FishData GetRandomFishData()
     {
-        return GetRandomFish(allFish);
+        return GetRandomFishData(allFish);
     }
 
-    public Fish GetRandomFish(bool hasCaught)
+    public FishData GetRandomFishData(bool hasCaught)
     {
         if(hasCaught)
         {
-            return GetRandomFish(caughtFish);
+            return GetRandomFishData(caughtFish);
         }
 
         else
         {
-            return GetRandomFish(wildFish);
+            return GetRandomFishData(wildFish);
         }
     }
 
-    public Fish GetRandomFish(List<Fish> fishList)
+    public FishData GetRandomFishData(List<FishData> fishList)
     {
 		int index = Random.Range(0, fishList.Count);
 
@@ -43,22 +73,44 @@ public class FishManager : MonoBehaviour
 
     public void SpawnFish()
     {
+        FishData newFish = GetRandomFishData();
 
+        SpawnFish(newFish);
     }
 
 
-    public void SpawnFish(Fish fish)
+    public void SpawnFish(FishData fishData)
     {
+        //Get size prefab
+        GameObject prefab = null;
 
+        switch(fishData.fishSize)
+        {
+            case FishSize.SMALL:
+                prefab = smallFishPF;
+                break;
+            case FishSize.MEDIUM:
+                prefab = mediumFishPF;
+                break;
+            case FishSize.LARGE:
+                prefab = largeFishPF;
+                break;
+        }
+
+        GameObject.Instantiate(prefab, new Vector3(0,-5,0), Quaternion.identity);
+        Fish fish = prefab.GetComponent<Fish>();
+        fish.fishData = fishData;
+
+        spawnedFish.Add(prefab.GetComponent<Fish>());
     }
 
 
     public void CatchFish(Fish fish)
     {
-        wildFish.Remove(fish);
+        wildFish.Remove(fish.fishData);
 
-        if (!caughtFish.Contains(fish))
-            caughtFish.Add(fish);
+        if (!caughtFish.Contains(fish.fishData))
+            caughtFish.Add(fish.fishData);
     }
 
     void ClearFish()
@@ -72,19 +124,29 @@ public class FishManager : MonoBehaviour
     {
         ClearFish();
 
-		fishGuids = AssetDatabase.FindAssets("t:Fish");
+		fishGuids = AssetDatabase.FindAssets("t:FishData");
 
 		foreach (string guid in fishGuids)
 		{
 			string path = AssetDatabase.GUIDToAssetPath(guid);
-			Fish newFish = AssetDatabase.LoadAssetAtPath(path, typeof(Fish)) as Fish;
+			FishData newFishData = AssetDatabase.LoadAssetAtPath(path, typeof(FishData)) as FishData;
 
-			allFish.Add(newFish);
+			allFish.Add(newFishData);
 
-            if (newFish.fishData.isCaught)
-                caughtFish.Add(newFish);
+            if (newFishData.isCaught)
+                caughtFish.Add(newFishData);
             else
-                wildFish.Add(newFish);
+                wildFish.Add(newFishData);
 		}
+	}
+
+	private void Start()
+	{
+        if (instance == null)
+            instance = this;
+
+        InitFish();
+
+        SpawnFish();
 	}
 }

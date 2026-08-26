@@ -5,36 +5,54 @@ using UnityEngine;
 
 public class TypeUI : UI
 {
-    TextMeshProUGUI wordTF;
-    TextMeshProUGUI typeTF;
-    TMP_Text typeText;
+    public static TypeUI instance;
+    [SerializeField] TextMeshProUGUI wordTF;
+    [SerializeField] TextMeshProUGUI typeTF;
+    [SerializeField] TMP_Text typeText;
 	private void OnEnable()
 	{
-        Keyboard.OnTypeKeyPress += DisplayKeystroke;
 	}
 
 	private void OnDisable()
 	{
-		Keyboard.OnTypeKeyPress -= DisplayKeystroke;
 	}
 
-    void DisplayWord()
+	private void Start()
+	{
+        if (instance == null)
+            instance = this;
+	}
+
+    public void Clear()
+    {
+        wordTF.text = string.Empty;
+        typeTF.text = string.Empty;
+        typeText.text = string.Empty;
+    }
+    
+
+	public void DisplayWord()
     {
         if (!isActive)
             return;
 
-        wordTF.text = WordManager.instance.GetCurrentWord().value;
+        wordTF.text = TypeManager.instance.GetLearningWordValue();
     }
 
-	void DisplayKeystroke()
+	public void DisplayKeystrokes()
     {
         if (!isActive)
             return;
 
-		string typedWord = Keyboard.instance.GetTypedWord();
-		char[] typedWordArray = typedWord.ToCharArray();
+        string typedInput = TypeManager.instance.GetTypeInput();
+		char[] typedInputArray = typedInput.ToCharArray();
 
-		for(int i = 0; i < typedWordArray.Length; i++)
+        if (typedInput.Length > TypeManager.instance.GetLearningWordValue().Length)
+            return;
+
+        //Debug.Log($"Typed input:{typedInput}");
+
+		for(int i = 0; i < typedInputArray.Length; i++)
         {
             ValidateKeystroke(i);
         }
@@ -45,15 +63,22 @@ public class TypeUI : UI
         if (!isActive)
             return false;
 
-        string curWord = WordManager.instance.GetCurrentWord().value;
-        char[] curWordArray = curWord.ToCharArray();
+        //Debug.Log($"Validating keystroke at {index}");
+        
 
-        string typedWord = Keyboard.instance.GetTypedWord();
-        char[] typedWordArray = typedWord.ToCharArray();
+        string learningWord = TypeManager.instance.GetLearningWordValue();
+        char[] learningWordArray = learningWord.ToCharArray();
 
-        typeTF.text = typedWord;
+        string typedInput = TypeManager.instance.GetTypeInput();
+        char[] typedInputArray = typedInput.ToCharArray();
 
-        if(curWordArray[index] == typedWord[index])
+		if (index >= learningWord.Length)
+			return false;
+
+		typeTF.text = typedInput;
+
+
+        if(learningWordArray[index] == typedInput[index])
         {
             ChangeKeystrokeColor(index, Color.green);
             return true;
@@ -77,8 +102,20 @@ public class TypeUI : UI
         if (index > textInfo.characterCount || !textInfo.characterInfo[index].isVisible)
             return;
 
-        textInfo.characterInfo[index].color = color;   
 
+        int materialIndex = textInfo.characterInfo[index].materialReferenceIndex;
+        int vertexIndex = textInfo.characterInfo[index].vertexIndex;
+        Color32[] vertexColors = textInfo.meshInfo[materialIndex].colors32;
+
+        for(int i = 0; i < 4; i++)
+        {
+			vertexColors[vertexIndex + i] = color;
+		}
+	
+
+		//textInfo.characterInfo[index].color = color;
+
+        typeText.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
 
 	}
 }

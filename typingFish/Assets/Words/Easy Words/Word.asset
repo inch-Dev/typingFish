@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5f61328c4c8fee4cac61fa40a07357d, type: 3}
+  m_Name: Word
+  m_EditorClassIdentifier: 
+  value: duck
+  difficulty: 0
+  hasLearned: 0
+  accuracy: 0
+  speed: 0
+  timesTyped: 1
+  timesEncountered: 13

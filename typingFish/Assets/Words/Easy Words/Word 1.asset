@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: FishData
-  m_EditorClassIdentifier: Assembly-CSharp::FishData
-  fishName: 
-  fishSprite: {fileID: 0}
-  fishSize: 0
-  wordDifficulty: 0
+  m_Script: {fileID: 11500000, guid: f5f61328c4c8fee4cac61fa40a07357d, type: 3}
+  m_Name: Word 1
+  m_EditorClassIdentifier: 
+  value: lion
+  difficulty: 0
+  hasLearned: 0
+  accuracy: 0
+  speed: 0
+  timesTyped: 1
+  timesEncountered: 9

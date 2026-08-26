@@ -5,11 +5,13 @@ using UnityEngine;
 public class TypeManager : MonoBehaviour, IStateable
 {
 	public bool isActive = false;
-
 	public void HandleState()
 	{
 		if (GameManager.instance.GetState() == GameState.TYPING)
+		{
 			isActive = true;
+			ChooseLearningWord();
+		}
 		else
 			isActive = false;
 	}
@@ -24,18 +26,45 @@ public class TypeManager : MonoBehaviour, IStateable
 
 	public string GetLearningWordValue(){ return learningWordValue; }
 
+	public Word GetLearningWord(){ return learningWord; }
+
 	public void SetLearningWord(Word newWord)
 	{
 		learningWord = newWord;
 		learningWordValue = newWord.value;
 
+		TypeUI.instance.DisplayWord();
+
 		learningWord.timesEncountered++;
 	}
 
-	string typeInputWord;
+	string typeInput;
 
-	public string GetTypeInputWord(){ return typeInputWord; }
-	public void SetTypeInputWord(string newWord){ typeInputWord = newWord; }
+	public string GetTypeInput(){ return typeInput; }
+	public void SetTypeInput(string newWord)
+	{ 
+		typeInput = newWord;
+		TypeUI.instance.DisplayKeystrokes();
+
+		if (typeInput == learningWordValue)
+			TypedWord();
+	}
+	public void AddTypeInput(char newLetter)
+	{  
+		typeInput += newLetter;
+		TypeUI.instance.DisplayKeystrokes();
+
+		if (typeInput == learningWordValue)
+			TypedWord();
+	}
+
+	public void Clear()
+	{
+		learningWord = null;
+		learningWordValue = null;
+		typeInput = null;
+	}
+
 
 	private void Start()
 	{
@@ -54,21 +83,33 @@ public class TypeManager : MonoBehaviour, IStateable
 	void ChooseLearningWord()
 	{
 		SetLearningWord(WordManager.instance.GetRandomWord(false));
+		Debug.Log($"Choosing word;{GetLearningWordValue()}");
+	}
+
+	void TypedWord()
+	{
+		TypeUI.instance.Clear();
+
+		canType = false;
+
+		if (typeInput == learningWordValue)
+		{
+			learningWord.speed += timeToType;
+			WordManager.instance.TypedWord(learningWord);
+		}
+
+		learningWord.UpdateStats();
+
+		Clear();
+
+		GameManager.instance.SetState(GameState.FISHING);
 	}
 
 	IEnumerator TypeTimer()
 	{
 		yield return new WaitForSeconds(typeTimer);
 
-		canType = false;
-
-		learningWord.speed += timeToType;
-
-		//Has typed word successfully
-		if(typeInputWord == learningWordValue)
-		{
-			WordManager.instance.TypedWord(learningWord);
-		}
+		TypedWord();
 
 	}
 }

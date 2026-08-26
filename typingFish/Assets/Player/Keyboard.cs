@@ -74,7 +74,8 @@ public class Keyboard : MonoBehaviour, IStateable
                 {
                     curLetter = (char)activeKey;
 					Debug.Log($"Returned {(KeyCode)keyValues[i]}");
-                    typedWord += curLetter;
+                    //Debug.Log($"Type Manager:{TypeManager.instance.name}");
+                    TypeManager.instance.AddTypeInput(curLetter);
 					return activeKey.ToString();
 				}
             }
@@ -83,11 +84,4 @@ public class Keyboard : MonoBehaviour, IStateable
         return null;
     }
 
-
-    #region EVENTS
-
-    public delegate void KeyboardInput();
-    public static event KeyboardInput OnTypeKeyPress;
-
-    #endregion
 }

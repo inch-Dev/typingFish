@@ -7,20 +7,21 @@ public class Keyboard : MonoBehaviour, IStateable
 
     public bool isActive = false;
 
-    string typedWord;
+	public void HandleState()
+	{
+		if (GameManager.instance.GetState() == GameState.TYPING)
+			isActive = true;
+		else
+			isActive = false;
+	}
+
+	string typedWord;
     public string GetTypedWord(){ return typedWord; }
 
 	char curLetter;
     public char GetCurrentLetter(){  return curLetter; }
     public void SetCurrentLetter(char newLetter){  curLetter = newLetter; }
 
-	public void HandleState() 
-    {
-        if (GameManager.instance.GetState() == GameState.TYPING)
-            isActive = true;
-        else
-            isActive = false;
-    }
 
     int[] keyValues;
 
@@ -81,4 +82,12 @@ public class Keyboard : MonoBehaviour, IStateable
 
         return null;
     }
+
+
+    #region EVENTS
+
+    public delegate void KeyboardInput();
+    public static event KeyboardInput OnTypeKeyPress;
+
+    #endregion
 }

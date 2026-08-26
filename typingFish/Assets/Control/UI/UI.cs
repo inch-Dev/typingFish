@@ -2,7 +2,7 @@ using UnityEngine;
 public class UI : MonoBehaviour
 {
 	public string uiName;
-	bool isActive = false;
+	protected bool isActive = false;
 	public CanvasGroup canvasGroup;
 	public GameState activeStates;
 

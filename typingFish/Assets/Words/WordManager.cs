@@ -17,10 +17,14 @@ public class WordManager : MonoBehaviour
 
     [SerializeField] List<Word> learnedWords;
 
+
+    //MOVE TO TYPE MANAGER
     Word curWord;
 
     public Word GetCurrentWord(){  return curWord; }
     public void SetCurrentWord(Word newWord){  curWord = newWord; }
+
+    [SerializeField] int learnThreshold = 0;
 
 
 	#region GET WORD
@@ -237,6 +241,33 @@ public class WordManager : MonoBehaviour
 
     #endregion
 
+
+    public void BeginLearningWord(Word word)
+    {
+        if (!learningWords.Contains(word))
+        {
+            learningWords.Add(word);
+            SetCurrentWord(word);
+        }
+    }
+
+    public void TypedWord(Word word)
+    {
+        word.timesTyped++;
+
+        if (word.timesTyped >= learnThreshold)
+            LearnWord(word);
+    }
+
+    public void LearnWord(Word word)
+    {
+        word.hasLearned = true;
+
+        learningWords.Remove(word);
+
+        if(!learnedWords.Contains(word))
+            learnedWords.Add(word);
+    }
 	void ClearWords()
     {
         allWords.Clear();

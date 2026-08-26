@@ -17,4 +17,13 @@ public class Word : ScriptableObject
     [HideInInspector] public float accuracy = 0.0f;
     [HideInInspector] public float speed = 0.0f;
 
+    [HideInInspector] public int timesTyped = 0;
+    [HideInInspector] public int timesEncountered = 0;
+
+    public void UpdateStats()
+    {
+        accuracy = timesTyped / timesEncountered;
+        speed = speed / timesEncountered;
+    }
+
 }

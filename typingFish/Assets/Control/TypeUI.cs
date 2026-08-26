@@ -16,8 +16,39 @@ public class TypeUI : UI
         
     }
 
-    void DisplayKeystroke(char keystroke)
+    void DisplayKeystroke()
     {
+        //if (!isActive)
+        //    return;
 
+        //char addedKeystroke = Keyboard.curLetter;
     }
+
+ //   bool ValidateKeystroke()
+ //   {
+ //       //if (!isActive)
+ //       //    return false;
+
+ //       string curWord = WordManager.instance.GetCurrentWord().value;
+
+ //       string typedWord = Keyboard.instance.GetTypedWord();
+
+ //       typeTF.text = typedWord;
+
+ //       for(int i = 0; i < curWord.Length; i++)
+ //       {
+ //           //if(char.Compare(curWord[i], typedWord[i]))
+ //           //{
+ //           //    //Make Green
+ //           //}
+
+ //           //else
+ //           //{
+ //           //    //Make Red
+ //           //}
+ //       }
+
+        
+
+	//}
 }

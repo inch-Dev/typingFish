@@ -17,6 +17,11 @@ public class WordManager : MonoBehaviour
 
     [SerializeField] List<Word> learnedWords;
 
+    Word curWord;
+
+    public Word GetCurrentWord(){  return curWord; }
+    public void SetCurrentWord(Word newWord){  curWord = newWord; }
+
 
 	#region GET WORD
 	public Word GetWord(string wordValue)

@@ -234,6 +234,16 @@ public class WordManager : MonoBehaviour
 
     #endregion
 
+    public void ResetLearning()
+    {
+        foreach(Word word in allWords)
+        {
+            word.hasLearned = false;
+            word.timesEncountered = 0;
+            word.timesTyped = 0;
+        }
+    }
+
 
     public void BeginLearningWord(Word word)
     {

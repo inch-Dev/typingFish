@@ -26,12 +26,15 @@ public class TypeManager : MonoBehaviour, IStateable
 
 	public string GetLearningWordValue(){ return learningWordValue; }
 
+	public void SetLearningWordValue(string value) { learningWordValue = value; }
+
 	public Word GetLearningWord(){ return learningWord; }
 
 	public void SetLearningWord(Word newWord)
 	{
+		Debug.Log($"Learning:{newWord.value}");
 		learningWord = newWord;
-		learningWordValue = newWord.value;
+		SetLearningWordValue(newWord.value);
 
 		TypeUI.instance.DisplayWord();
 
@@ -83,7 +86,6 @@ public class TypeManager : MonoBehaviour, IStateable
 	void ChooseLearningWord()
 	{
 		SetLearningWord(WordManager.instance.GetRandomWord(false));
-		//Debug.Log($"Choosing word;{GetLearningWordValue()}");
 	}
 
 	void TypedWord()
@@ -96,9 +98,15 @@ public class TypeManager : MonoBehaviour, IStateable
 		{
 			learningWord.speed += timeToType;
 			WordManager.instance.TypedWord(learningWord);
+			FishManager.instance.CatchFish();
 		}
 
-		learningWord.UpdateStats();
+		else
+		{
+			FishManager.instance.MissFish();
+		}
+
+			learningWord.UpdateStats();
 
 		Clear();
 

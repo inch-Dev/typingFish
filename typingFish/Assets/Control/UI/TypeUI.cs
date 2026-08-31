@@ -35,7 +35,6 @@ public class TypeUI : UI
     {
         if (!isActive)
             return;
-
         wordTF.text = TypeManager.instance.GetLearningWordValue();
     }
 

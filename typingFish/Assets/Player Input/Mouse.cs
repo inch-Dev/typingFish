@@ -30,6 +30,7 @@ public class Mouse : MonoBehaviour, IStateable
         if (collision.gameObject.GetComponentInParent<Fish>())
         {
             GameManager.instance.SetState(GameState.TYPING);
+            FishManager.instance.SetCatchingFish(collision.gameObject.GetComponentInParent<Fish>());
         }
 	}
 }

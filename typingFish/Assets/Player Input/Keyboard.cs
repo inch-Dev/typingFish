@@ -73,7 +73,7 @@ public class Keyboard : MonoBehaviour, IStateable
                 if(activeKey.ToString().Length == 1 && activeKey.ToString().All(char.IsLetter))
                 {
                     curLetter = (char)activeKey;
-					Debug.Log($"Returned {(KeyCode)keyValues[i]}");
+					//Debug.Log($"Returned {(KeyCode)keyValues[i]}");
                     //Debug.Log($"Type Manager:{TypeManager.instance.name}");
                     TypeManager.instance.AddTypeInput(curLetter);
 					return activeKey.ToString();

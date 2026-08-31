@@ -19,7 +19,7 @@ public class Fish : MonoBehaviour, IStateable
         switch (GameManager.instance.GetState())
         {
             case GameState.TYPING:
-                Debug.Log("Toggle off simulation");
+                //Debug.Log("Toggle off simulation");
                 collider.enabled = false;
 
                 break;
@@ -33,7 +33,7 @@ public class Fish : MonoBehaviour, IStateable
     private void Start()
     {
         collider = GetComponentInChildren<CapsuleCollider2D>();
-        Debug.Log($"Getting:{GetComponentInChildren<CapsuleCollider2D>()}");
+        //Debug.Log($"Getting:{GetComponentInChildren<CapsuleCollider2D>()}");
     }
 
 }

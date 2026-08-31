@@ -25,30 +25,33 @@ public class FishManager : MonoBehaviour, IStateable
     [SerializeField] GameObject mediumFishPF;
     [SerializeField] GameObject largeFishPF;
 
-    [SerializeField] List<FishData> allFish;
+    [SerializeField] List<FishData> allFishData;
 
-    [SerializeField] List<FishData> wildFish;
+    [SerializeField] List<FishData> wildFishData;
 
-    [SerializeField] List<FishData> caughtFish;
+    [SerializeField] List<FishData> caughtFishData;
 
     [SerializeField] List<Fish> spawnedFish;
 
+    Fish catchingFish;
+    public Fish GetCatchingFish() { return catchingFish; }
+    public void SetCatchingFish(Fish fish) { catchingFish = fish; }
 
     public FishData GetRandomFishData()
     {
-        return GetRandomFishData(allFish);
+        return GetRandomFishData(allFishData);
     }
 
     public FishData GetRandomFishData(bool hasCaught)
     {
         if(hasCaught)
         {
-            return GetRandomFishData(caughtFish);
+            return GetRandomFishData(caughtFishData);
         }
 
         else
         {
-            return GetRandomFishData(wildFish);
+            return GetRandomFishData(wildFishData);
         }
     }
 
@@ -94,11 +97,11 @@ public class FishManager : MonoBehaviour, IStateable
         {
             case GameState.FISHING:
                 fish.collider.enabled = true;
-                Debug.Log("Setting collider on");
+                //Debug.Log("Setting collider on");
                 break;
             default:
                 fish.collider.enabled = false;
-                Debug.Log("Setting collider off");
+                //Debug.Log("Setting collider off");
                 break;
         }     
 
@@ -106,19 +109,43 @@ public class FishManager : MonoBehaviour, IStateable
     }
 
 
+    public void CatchFish()
+    {
+        CatchFish(catchingFish);
+        SetCatchingFish(null);
+    }
+
     public void CatchFish(Fish fish)
     {
-        wildFish.Remove(fish.fishData);
+        Debug.Log("Caught!");
+        wildFishData.Remove(fish.fishData);
 
-        if (!caughtFish.Contains(fish.fishData))
-            caughtFish.Add(fish.fishData);
+        if (!caughtFishData.Contains(fish.fishData))
+            caughtFishData.Add(fish.fishData);
+
+        spawnedFish.Remove(fish);
+        Destroy(fish.gameObject);
+    }
+
+    public void MissFish()
+    {
+        MissFish(catchingFish);
+        SetCatchingFish(null);
+    }
+
+    public void MissFish(Fish fish)
+    {
+        Debug.Log("Missed!");
+        spawnedFish.Remove(fish);
+        Destroy(fish.gameObject);
     }
 
     void ClearFish()
     {
-        allFish.Clear();
-        wildFish.Clear();
-        caughtFish.Clear();
+        allFishData.Clear();
+        wildFishData.Clear();
+        caughtFishData.Clear();
+        SetCatchingFish(null);
     }
 
     void InitFish()
@@ -132,12 +159,12 @@ public class FishManager : MonoBehaviour, IStateable
 			string path = AssetDatabase.GUIDToAssetPath(guid);
 			FishData newFishData = AssetDatabase.LoadAssetAtPath(path, typeof(FishData)) as FishData;
 
-			allFish.Add(newFishData);
+			allFishData.Add(newFishData);
 
             if (newFishData.isCaught)
-                caughtFish.Add(newFishData);
+                caughtFishData.Add(newFishData);
             else
-                wildFish.Add(newFishData);
+                wildFishData.Add(newFishData);
 		}
 	}
 

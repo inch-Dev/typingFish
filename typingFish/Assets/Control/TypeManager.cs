@@ -83,7 +83,7 @@ public class TypeManager : MonoBehaviour, IStateable
 	void ChooseLearningWord()
 	{
 		SetLearningWord(WordManager.instance.GetRandomWord(false));
-		Debug.Log($"Choosing word;{GetLearningWordValue()}");
+		//Debug.Log($"Choosing word;{GetLearningWordValue()}");
 	}
 
 	void TypedWord()

@@ -10,24 +10,12 @@ public class FishManager : MonoBehaviour, IStateable
     {
         switch(GameManager.instance.GetState())
         {
-            case GameState.TYPING:
-				foreach (Fish fish in spawnedFish)
-				{
-					fish.rb.simulated = false;
-					Debug.Log("Typing!");
-					Debug.Log($"Type Got Component:{fish.rb}");
-				}
-				break;
-			case GameState.FISHING:
-				foreach (Fish fish in spawnedFish)
-				{
-					fish.rb.simulated = true;
-					Debug.Log("Fishing!");
-                    Debug.Log($"Fish Got Component:{fish.rb}");
-				}
-				break;
-
-		}
+            case GameState.FISHING:
+                SpawnFish();
+                break;
+            default:
+                break;
+        }
     }
     public static FishManager instance;
 
@@ -97,9 +85,22 @@ public class FishManager : MonoBehaviour, IStateable
                 break;
         }
 
+        //Need Fish Spawning Zone
         GameObject.Instantiate(prefab, new Vector3(0,-5,0), Quaternion.identity);
         Fish fish = prefab.GetComponent<Fish>();
         fish.fishData = fishData;
+
+        switch (GameManager.instance.GetState())
+        {
+            case GameState.FISHING:
+                fish.collider.enabled = true;
+                Debug.Log("Setting collider on");
+                break;
+            default:
+                fish.collider.enabled = false;
+                Debug.Log("Setting collider off");
+                break;
+        }     
 
         spawnedFish.Add(prefab.GetComponent<Fish>());
     }
@@ -146,7 +147,5 @@ public class FishManager : MonoBehaviour, IStateable
             instance = this;
 
         InitFish();
-
-        SpawnFish();
 	}
 }

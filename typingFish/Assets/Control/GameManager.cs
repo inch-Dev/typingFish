@@ -7,9 +7,10 @@ using UnityEngine;
 public enum GameState
 {
     NULL = 0,
-    FISHING = 1,
-    TYPING = 2,
-    PAUSED = 4,
+    CASTING = 1,
+    FISHING = 2,
+    TYPING = 4,
+    PAUSED = 6,
 }
 
 
@@ -34,9 +35,18 @@ public class GameManager : MonoBehaviour
     }
 
     public GameState GetState(){ return curState; }
+
+    public void SetState(int state)
+    {
+        SetState((GameState)state);
+    }
+
     public void SetState(GameState state)
-    { 
+    {
+        SetStateables();
+
         curState = state;
+        Debug.Log($"Setting state to {curState}");
         foreach(IStateable stateable in stateables)
         {
             stateable.HandleState();
@@ -50,7 +60,7 @@ public class GameManager : MonoBehaviour
             instance = this;
 
         SetStateables();
-        SetState(GameState.FISHING);
+        SetState(GameState.CASTING);
     }
 
     // Update is called once per frame

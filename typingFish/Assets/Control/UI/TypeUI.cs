@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TypeUI : UI
 {
@@ -9,13 +10,7 @@ public class TypeUI : UI
     [SerializeField] TextMeshProUGUI wordTF;
     [SerializeField] TextMeshProUGUI typeTF;
     [SerializeField] TMP_Text typeText;
-	private void OnEnable()
-	{
-	}
-
-	private void OnDisable()
-	{
-	}
+    [SerializeField] Slider timeSlider;
 
 	private void Start()
 	{
@@ -23,13 +18,18 @@ public class TypeUI : UI
             instance = this;
 	}
 
-    public void Clear()
+	public void Clear()
     {
         wordTF.text = string.Empty;
         typeTF.text = string.Empty;
         typeText.text = string.Empty;
     }
     
+    public void DisplayTimer()
+    {
+        timeSlider.maxValue = TypeManager.instance.GetTypeTimer();
+        timeSlider.value = TypeManager.instance.GetTimeToType();
+    }
 
 	public void DisplayWord()
     {

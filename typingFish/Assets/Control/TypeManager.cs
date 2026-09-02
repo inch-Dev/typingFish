@@ -18,8 +18,13 @@ public class TypeManager : MonoBehaviour, IStateable
 	public static TypeManager instance;
 	[SerializeField] float typeTimer;
 
+	public float GetTypeTimer(){  return typeTimer; }
+
+
 	bool canType = false;
 	float timeToType = 0f;
+
+	public float GetTimeToType(){ return timeToType; }
 
 	Word learningWord;
 	string learningWordValue;
@@ -75,11 +80,12 @@ public class TypeManager : MonoBehaviour, IStateable
 			instance = this;
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
 		if(canType)
 		{
 			timeToType += Time.deltaTime;
+			TypeUI.instance.DisplayTimer();
 		}
 	}
 

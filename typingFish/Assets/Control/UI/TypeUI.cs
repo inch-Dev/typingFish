@@ -27,11 +27,15 @@ public class TypeUI : UI
     
     public void DisplayTimer()
     {
+
+        Debug.Log("DisplayingTimer...");
         timeSlider.maxValue = TypeManager.instance.GetTypeTimer();
         timeSlider.value = TypeManager.instance.GetTimeToType();
+
+        Debug.Log("Timer Values...Max:{timeSlider.maxValue}, Value:{timeSlider.value}");
     }
 
-	public void DisplayWord()
+    public void DisplayWord()
     {
         if (!isActive)
             return;

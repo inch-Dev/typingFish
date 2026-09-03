@@ -10,10 +10,14 @@ public class TypeManager : MonoBehaviour, IStateable
 		if (GameManager.instance.GetState() == GameState.TYPING)
 		{
 			isActive = true;
+			canType = true;
 			ChooseLearningWord();
 		}
 		else
+		{
+			canType = false;
 			isActive = false;
+		}
 	}
 	public static TypeManager instance;
 	[SerializeField] float typeTimer;
@@ -86,6 +90,12 @@ public class TypeManager : MonoBehaviour, IStateable
 		{
 			timeToType += Time.deltaTime;
 			TypeUI.instance.DisplayTimer();
+
+
+			if(timeToType >= typeTimer)
+			{
+				TypedWord();
+			}
 		}
 	}
 
@@ -114,6 +124,7 @@ public class TypeManager : MonoBehaviour, IStateable
 
 			learningWord.UpdateStats();
 
+		timeToType = 0f;
 		Clear();
 
 		GameManager.instance.SetState(GameState.FISHING);

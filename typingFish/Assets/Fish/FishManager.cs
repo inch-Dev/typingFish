@@ -14,6 +14,7 @@ public class FishManager : MonoBehaviour, IStateable
                 //Spawn a bunch of fish?
                 break;
             case GameState.FISHING:
+                SpawnFish();
                 break;
             default:
                 break;

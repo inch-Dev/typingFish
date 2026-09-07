@@ -88,7 +88,7 @@ public class TypeManager : MonoBehaviour, IStateable
 	{
 		if(canType)
 		{
-			timeToType += Time.deltaTime;
+			timeToType += Time.fixedDeltaTime;
 			TypeUI.instance.DisplayTimer();
 
 

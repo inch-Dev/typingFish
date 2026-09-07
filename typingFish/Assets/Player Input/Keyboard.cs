@@ -48,7 +48,7 @@ public class Keyboard : MonoBehaviour, IStateable
 	}
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(isActive)
             Keystroke();

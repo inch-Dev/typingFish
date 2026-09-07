@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class SessionUI : MonoBehaviour
+public class SessionUI : UI
 {
     [HideInInspector] public static SessionUI instance;
     [SerializeField] TextMeshProUGUI sessionTF;

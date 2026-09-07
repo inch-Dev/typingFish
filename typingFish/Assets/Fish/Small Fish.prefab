@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: fishData
       value: 
       objectReference: {fileID: 11400000, guid: b4caffb09b93cb04488cd77a9b0ead5c, type: 2}
+    - target: {fileID: 3988003558233964794, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
+      propertyPath: moveDirection.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4394565151076585731, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -66,11 +70,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5428170302357972760, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
       propertyPath: m_Size.x
-      value: 1
+      value: 0.59
       objectReference: {fileID: 0}
     - target: {fileID: 5428170302357972760, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
       propertyPath: m_Size.y
-      value: 0.5
+      value: 0.43
       objectReference: {fileID: 0}
     - target: {fileID: 8151920972346094036, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
       propertyPath: m_Simulated

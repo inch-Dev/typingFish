@@ -36,6 +36,8 @@ public class Mouse : MonoBehaviour, IStateable
                 break;
             case GameState.CASTING:
             case GameState.TYPING:
+            case GameState.SESSION_OVER:
+            case GameState.PAUSED:
                 SetState(MouseState.MOUSE);
                 break;
         }
@@ -46,5 +48,6 @@ public class Mouse : MonoBehaviour, IStateable
     {
         if (instance == null)
             instance = this;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 }

@@ -6,10 +6,10 @@ public class SessionManager : MonoBehaviour, IStateable
     {
         switch (GameManager.instance.GetState())
         {
+            case GameState.CASTING:
             case GameState.PAUSED:
                 isCountingTimer = false;
                 break;
-            case GameState.CASTING:
             case GameState.FISHING:
             case GameState.TYPING:
                 isCountingTimer = true;
@@ -44,5 +44,6 @@ public class SessionManager : MonoBehaviour, IStateable
     void EndSession()
     {
         Debug.Log("Session is over!");
+        GameManager.instance.SetState(GameState.SESSION_OVER);
     }
 }

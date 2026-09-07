@@ -10,8 +10,10 @@ public class FishManager : MonoBehaviour, IStateable
     {
         switch(GameManager.instance.GetState())
         {
+            case GameState.CASTING:
+                //Spawn a bunch of fish?
+                break;
             case GameState.FISHING:
-                SpawnFish();
                 break;
             default:
                 break;
@@ -33,7 +35,12 @@ public class FishManager : MonoBehaviour, IStateable
 
     [SerializeField] List<Fish> spawnedFish;
 
+    [SerializeField] Vector2 spawnSideDistances;
+    [SerializeField] float spawnDistanceInterval;
+    [SerializeField] float verticalSpawnOffset;
+
     Fish catchingFish;
+
     public Fish GetCatchingFish() { return catchingFish; }
     public void SetCatchingFish(Fish fish) { catchingFish = fish; }
 
@@ -72,7 +79,7 @@ public class FishManager : MonoBehaviour, IStateable
 
     public void SpawnFish(FishData fishData)
     {
-        //Get size prefab
+        //Get Size Prefab
         GameObject prefab = null;
 
         switch(fishData.fishSize)
@@ -88,20 +95,45 @@ public class FishManager : MonoBehaviour, IStateable
                 break;
         }
 
-        //Need Fish Spawning Zone
-        GameObject.Instantiate(prefab, new Vector3(0,-5,0), Quaternion.identity);
+        //Get Random Side && Orient Movement 
+        int randomSide = Random.Range(0, 2);
+        float spawnX = 0;
+        Vector2 moveDirection = Vector2.zero;
+
+        switch(randomSide)
+        {
+            case 0:
+                spawnX = spawnSideDistances.x;
+                moveDirection = Vector2.right;
+                break;
+            case 1:
+                spawnX = spawnSideDistances.y;
+                moveDirection = Vector2.left;
+                break;
+        }
+
+
+        //Account for size of last fish spawned on this side;
+
+
+
+        //Spawn At Position
+        GameObject.Instantiate(prefab, new Vector3(spawnX, Hook.instance.transform.position.y - verticalSpawnOffset,0), Quaternion.identity);
         Fish fish = prefab.GetComponent<Fish>();
         fish.fishData = fishData;
+        fish.moveDirection = moveDirection;
+        fish.SetMove(true);
+
+        Debug.Log($"Fishing moving in:{moveDirection}");
 
         switch (GameManager.instance.GetState())
         {
+            case GameState.CASTING:
             case GameState.FISHING:
                 fish.collider.enabled = true;
-                //Debug.Log("Setting collider on");
                 break;
             default:
                 fish.collider.enabled = false;
-                //Debug.Log("Setting collider off");
                 break;
         }     
 
@@ -140,6 +172,12 @@ public class FishManager : MonoBehaviour, IStateable
         Destroy(fish.gameObject);
     }
 
+    public void RemoveFish(Fish fish)
+    {
+        if (spawnedFish.Contains(fish))
+            spawnedFish.Remove(fish);
+    }
+
     void ClearFish()
     {
         allFishData.Clear();
@@ -175,4 +213,9 @@ public class FishManager : MonoBehaviour, IStateable
 
         InitFish();
 	}
+
+    private void FixedUpdate()
+    {
+
+    }
 }

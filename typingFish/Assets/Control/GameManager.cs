@@ -11,6 +11,7 @@ public enum GameState
     FISHING = 2,
     TYPING = 4,
     PAUSED = 6,
+    SESSION_OVER = 8,
 }
 
 

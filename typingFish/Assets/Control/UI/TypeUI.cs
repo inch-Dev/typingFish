@@ -40,6 +40,7 @@ public class TypeUI : UI
         if (!isActive)
             return;
         wordTF.text = TypeManager.instance.GetLearningWordValue();
+        Debug.Log($"Setting ui to {wordTF.text}");
     }
 
 	public void DisplayKeystrokes()

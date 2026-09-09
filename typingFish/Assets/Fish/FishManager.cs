@@ -119,8 +119,8 @@ public class FishManager : MonoBehaviour, IStateable
 
 
         //Spawn At Position
-        GameObject.Instantiate(prefab, new Vector3(spawnX, Hook.instance.transform.position.y - verticalSpawnOffset,0), Quaternion.identity);
-        Fish fish = prefab.GetComponent<Fish>();
+        GameObject newFish =GameObject.Instantiate(prefab, new Vector3(spawnX, Hook.instance.transform.position.y - verticalSpawnOffset,0), Quaternion.identity);
+        Fish fish = newFish.GetComponent<Fish>();
         fish.fishData = fishData;
         fish.moveDirection = moveDirection;
         fish.SetMove(true);
@@ -138,7 +138,7 @@ public class FishManager : MonoBehaviour, IStateable
                 break;
         }     
 
-        spawnedFish.Add(prefab.GetComponent<Fish>());
+        spawnedFish.Add(fish);
     }
 
 
@@ -176,7 +176,15 @@ public class FishManager : MonoBehaviour, IStateable
     public void RemoveFish(Fish fish)
     {
         if (spawnedFish.Contains(fish))
+        {
             spawnedFish.Remove(fish);
+			Destroy(fish.gameObject);
+		}
+
+        else
+        {
+            Debug.Log("Not contained");
+        }
     }
 
     void ClearFish()

@@ -158,6 +158,8 @@ public class FishManager : MonoBehaviour, IStateable
 
         spawnedFish.Remove(fish);
         Destroy(fish.gameObject);
+
+        SpawnFish();
     }
 
     public void MissFish()
@@ -171,6 +173,8 @@ public class FishManager : MonoBehaviour, IStateable
         Debug.Log("Missed!");
         spawnedFish.Remove(fish);
         Destroy(fish.gameObject);
+
+        SpawnFish();
     }
 
     public void RemoveFish(Fish fish)
@@ -225,6 +229,6 @@ public class FishManager : MonoBehaviour, IStateable
 
     private void FixedUpdate()
     {
-
+        //WHAT TO USE FOR INTERVAL OF SPAWNED FISH?
     }
 }

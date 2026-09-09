@@ -17,6 +17,7 @@ public class Fish : MonoBehaviour, IStateable
 	public FishData fishData;
 
     [SerializeField] float ascendSpeed;
+    [SerializeField] Vector2 moveSpeedRange;
     public float moveSpeed;
     public Vector2 moveDirection;
     bool canMove = true;
@@ -28,7 +29,6 @@ public class Fish : MonoBehaviour, IStateable
         switch (GameManager.instance.GetState())
         {
             case GameState.TYPING:
-                //Debug.Log("Toggle off simulation");
                 collider.enabled = false;
                 canMove = true;
                 break;
@@ -47,6 +47,7 @@ public class Fish : MonoBehaviour, IStateable
     private void Start()
     {
         collider = GetComponentInChildren<CapsuleCollider2D>();
+        moveSpeed = Random.Range(moveSpeedRange.x, moveSpeedRange.y);
     }
 
     private void FixedUpdate()

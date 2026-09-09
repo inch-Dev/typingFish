@@ -47,3 +47,4 @@ MonoBehaviour:
   allWords: []
   learningWords: []
   learnedWords: []
+  learnThreshold: 10

@@ -51,6 +51,6 @@ MonoBehaviour:
   wildFishData: []
   caughtFishData: []
   spawnedFish: []
-  spawnSideDistances: {x: -3, y: 3}
-  spawnDistanceInterval: 100
+  spawnSideDistances: {x: -5, y: 5}
+  spawnTimeIntervalSeconds: 1
   verticalSpawnOffset: 7

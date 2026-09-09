@@ -15,6 +15,7 @@ public class FishManager : MonoBehaviour, IStateable
                 break;
             case GameState.FISHING:
                 SpawnFish();
+                isSpawning = true;
                 break;
             default:
                 break;
@@ -37,8 +38,10 @@ public class FishManager : MonoBehaviour, IStateable
     [SerializeField] List<Fish> spawnedFish;
 
     [SerializeField] Vector2 spawnSideDistances;
-    [SerializeField] float spawnDistanceInterval;
-    [SerializeField] float verticalSpawnOffset;
+    bool isSpawning = false;
+    [SerializeField] float spawnTimeIntervalSeconds;
+    float spawnTimeElapsedSeconds;
+    [SerializeField] Vector2 verticalSpawnOffset;
 
     Fish catchingFish;
 
@@ -113,19 +116,23 @@ public class FishManager : MonoBehaviour, IStateable
                 break;
         }
 
-
-        //Account for size of last fish spawned on this side;
-
-
-
         //Spawn At Position
-        GameObject newFish =GameObject.Instantiate(prefab, new Vector3(spawnX, Hook.instance.transform.position.y - verticalSpawnOffset,0), Quaternion.identity);
+        float spawnOffset = Random.Range(verticalSpawnOffset.x, verticalSpawnOffset.y);
+        GameObject newFish =GameObject.Instantiate(prefab, new Vector3(spawnX, Hook.instance.transform.position.y - spawnOffset,0), Quaternion.identity);
         Fish fish = newFish.GetComponent<Fish>();
         fish.fishData = fishData;
+
+        
+        //Ignore Collision with Other Fish
+        foreach(Fish spawnedFish in spawnedFish)
+        {
+            Physics2D.IgnoreCollision(fish.collider, spawnedFish.collider);
+        }
+
+
+
         fish.moveDirection = moveDirection;
         fish.SetMove(true);
-
-        Debug.Log($"Fishing moving in:{moveDirection}");
 
         switch (GameManager.instance.GetState())
         {
@@ -229,6 +236,15 @@ public class FishManager : MonoBehaviour, IStateable
 
     private void FixedUpdate()
     {
-        //WHAT TO USE FOR INTERVAL OF SPAWNED FISH?
+        if(isSpawning)
+        {
+            spawnTimeElapsedSeconds += Time.fixedDeltaTime;
+
+            if(spawnTimeElapsedSeconds >= spawnTimeIntervalSeconds)
+            {
+                SpawnFish();
+                spawnTimeElapsedSeconds = 0;
+            }
+        }
     }
 }

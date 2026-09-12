@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using UnityEditor.Presets;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -21,7 +22,7 @@ public class Fish : MonoBehaviour, IStateable
     public float moveSpeed;
     public Vector2 moveDirection;
     bool canMove = true;
-
+    float resetYPosition;
 
     public void SetMove(bool move) { canMove = move; }
 	public void HandleState()
@@ -35,6 +36,8 @@ public class Fish : MonoBehaviour, IStateable
             case GameState.FISHING:
                 collider.enabled = true;
                 canMove = true;
+                //Reset position
+                transform.position = new Vector3(transform.position.x, resetYPosition, 0f);
                 break;
             case GameState.PAUSED:
             case GameState.SESSION_OVER:
@@ -48,6 +51,7 @@ public class Fish : MonoBehaviour, IStateable
     {
         collider = GetComponentInChildren<CapsuleCollider2D>();
         moveSpeed = Random.Range(moveSpeedRange.x, moveSpeedRange.y);
+        resetYPosition = transform.position.y;
     }
 
     private void FixedUpdate()

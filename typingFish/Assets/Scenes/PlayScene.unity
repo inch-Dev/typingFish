@@ -1125,6 +1125,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1815799963}
     m_Modifications:
+    - target: {fileID: 982339518316915654, guid: 09f6102fef7075044914e2056776e457, type: 3}
+      propertyPath: verticalSpawnOffsetRange.x
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 982339518316915654, guid: 09f6102fef7075044914e2056776e457, type: 3}
+      propertyPath: verticalSpawnOffsetRange.y
+      value: -5
+      objectReference: {fileID: 0}
     - target: {fileID: 1858187237405690711, guid: 09f6102fef7075044914e2056776e457, type: 3}
       propertyPath: m_Name
       value: Fish Manager

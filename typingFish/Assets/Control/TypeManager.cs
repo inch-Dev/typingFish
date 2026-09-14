@@ -141,8 +141,6 @@ public class TypeManager : MonoBehaviour, IStateable
 
 		timeToType = 0f;
 		Clear();
-
-		GameManager.instance.SetState(GameState.FISHING);
 	}
 
 	IEnumerator TypeTimer()

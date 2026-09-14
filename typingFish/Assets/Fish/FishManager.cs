@@ -2,6 +2,7 @@ using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class FishManager : MonoBehaviour, IStateable
 {
@@ -11,13 +12,15 @@ public class FishManager : MonoBehaviour, IStateable
         switch(GameManager.instance.GetState())
         {
             case GameState.CASTING:
-                //Spawn a bunch of fish?
-                break;
-            case GameState.FISHING:
-                SpawnFish();
+                //Spawn a bunch of fish
                 isSpawning = true;
                 break;
-            default:
+            case GameState.FISHING:
+                isSpawning = true;
+                break;
+            case GameState.PAUSED:
+            case GameState.SESSION_OVER:
+                isSpawning = false;
                 break;
         }
     }
@@ -165,7 +168,7 @@ public class FishManager : MonoBehaviour, IStateable
 
         spawnedFish.Remove(fish);
         Destroy(fish.gameObject);
-
+        GameManager.instance.SetState(GameState.CASTING);
         SpawnFish();
     }
 
@@ -180,7 +183,7 @@ public class FishManager : MonoBehaviour, IStateable
         //Debug.Log("Missed!");
         spawnedFish.Remove(fish);
         Destroy(fish.gameObject);
-
+        GameManager.instance.SetState(GameState.CASTING);
         SpawnFish();
     }
 

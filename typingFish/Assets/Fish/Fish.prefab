@@ -50,7 +50,7 @@ MonoBehaviour:
   collider: {fileID: 5428170302357972760}
   fishData: {fileID: 0}
   ascendSpeed: 1
-  moveSpeedRange: {x: 1, y: 2}
+  moveSpeedRange: {x: 3, y: 4}
   moveSpeed: 1
   moveDirection: {x: 0, y: 0}
 --- !u!50 &8151920972346094036

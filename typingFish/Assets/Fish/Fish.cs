@@ -33,10 +33,14 @@ public class Fish : MonoBehaviour, IStateable
                 collider.enabled = false;
                 canMove = true;
                 break;
+            case GameState.CASTING:
+                collider.enabled = false;
+                canMove = true;
+                break;
             case GameState.FISHING:
                 collider.enabled = true;
                 canMove = true;
-                transform.position = new Vector3(transform.position.x, fishingResetYPosition, 0f);
+                //transform.position = new Vector3(transform.position.x, fishingResetYPosition, 0f);
                 break;
             case GameState.PAUSED:
             case GameState.SESSION_OVER:

@@ -40,7 +40,6 @@ public class Hook : MonoBehaviour, IStateable
 
 	[Header("Fishing")]
 	[SerializeField] Vector2 horizontalRangeClamp;
-	[SerializeField] float verticalMoveSpeed;
 	[SerializeField] float horizontalMoveSpeed;
 
 
@@ -71,6 +70,7 @@ public class Hook : MonoBehaviour, IStateable
 			{
 				isCasting = false;
 				castTimeElapsed = 0f;
+				GameManager.instance.SetState(GameState.FISHING);
 			}
 
 			else

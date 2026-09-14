@@ -336,8 +336,8 @@ Transform:
   m_GameObject: {fileID: 1092946403}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.5, z: 0}
-  m_LocalScale: {x: 166.89207, y: 3.9571333, z: 1}
+  m_LocalPosition: {x: 0, y: 43.3, z: 0}
+  m_LocalScale: {x: 1013.8693, y: 3.9571333, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -728,8 +728,8 @@ Transform:
   m_GameObject: {fileID: 1916377898}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13, y: -45, z: 0}
-  m_LocalScale: {x: 10, y: 100, z: 1}
+  m_LocalPosition: {x: 13, y: 13.600002, z: 0}
+  m_LocalScale: {x: 10, y: 55, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -867,8 +867,8 @@ Transform:
   m_GameObject: {fileID: 1936815539}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13, y: -45, z: 0}
-  m_LocalScale: {x: 10, y: 100, z: 1}
+  m_LocalPosition: {x: -13, y: 13.6, z: 0}
+  m_LocalScale: {x: 10, y: 55, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1131,6 +1131,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 1815799963}
     m_Modifications:
     - target: {fileID: 982339518316915654, guid: 09f6102fef7075044914e2056776e457, type: 3}
+      propertyPath: spawnSideDistances.x
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 982339518316915654, guid: 09f6102fef7075044914e2056776e457, type: 3}
+      propertyPath: spawnSideDistances.y
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 982339518316915654, guid: 09f6102fef7075044914e2056776e457, type: 3}
       propertyPath: verticalSpawnOffsetRange.x
       value: -2
       objectReference: {fileID: 0}
@@ -1391,7 +1399,7 @@ PrefabInstance:
       objectReference: {fileID: 813001699}
     - target: {fileID: 3736375229614976984, guid: 800bb2fa982c4cb449d22a310a4c0452, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3814321054733900548, guid: 800bb2fa982c4cb449d22a310a4c0452, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1480,11 +1488,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2559663185476235775, guid: 104a49b5103d59e409dedb9e2a625b29, type: 3}
       propertyPath: castingTime
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2559663185476235775, guid: 104a49b5103d59e409dedb9e2a625b29, type: 3}
       propertyPath: castingSpeed
-      value: 1
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 2559663185476235775, guid: 104a49b5103d59e409dedb9e2a625b29, type: 3}
       propertyPath: spriteRenderer

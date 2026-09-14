@@ -41,7 +41,7 @@ public class FishManager : MonoBehaviour, IStateable
     bool isSpawning = false;
     [SerializeField] float spawnTimeIntervalSeconds;
     float spawnTimeElapsedSeconds;
-    [SerializeField] Vector2 verticalSpawnOffsetRange;
+    [SerializeField] Vector2 verticalSpawnOffset;
 
     Fish catchingFish;
 
@@ -117,8 +117,8 @@ public class FishManager : MonoBehaviour, IStateable
         }
 
         //Spawn At Position
-        float spawnOffset = Random.Range(verticalSpawnOffsetRange.x, verticalSpawnOffsetRange.y);
-        GameObject newFish =GameObject.Instantiate(prefab, new Vector3(spawnX,spawnOffset,0), Quaternion.identity);
+        float spawnOffset = Random.Range(verticalSpawnOffset.x, verticalSpawnOffset.y);
+        GameObject newFish =GameObject.Instantiate(prefab, new Vector3(spawnX, Hook.instance.transform.position.y - spawnOffset,0), Quaternion.identity);
         Fish fish = newFish.GetComponent<Fish>();
         fish.fishData = fishData;
 

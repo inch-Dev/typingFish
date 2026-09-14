@@ -47,14 +47,9 @@ public class TypeUI : UI
     {
         if (!isActive)
             return;
-        
 
         string typedInput = TypeManager.instance.GetTypeInput();
 		char[] typedInputArray = typedInput.ToCharArray();
-
-
-        Debug.Log($"Trying to display {typedInput}");
-
 
         if (typedInput.Length > TypeManager.instance.GetLearningWordValue().Length)
             return;
@@ -65,9 +60,6 @@ public class TypeUI : UI
         {
             ValidateKeystroke(i);
         }
-
-        if (typedInput.Length == 0)
-            typeText.text = "";
 	}
 
     bool ValidateKeystroke(int index)

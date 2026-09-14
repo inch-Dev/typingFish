@@ -69,18 +69,6 @@ public class TypeManager : MonoBehaviour, IStateable
 		if (typeInput == learningWordValue || typeInput.Length == learningWordValue.Length)
 			TypedWord();
 	}
-	public void DeleteTypeInputChar()
-	{
-		Debug.Log("Deleting character...");
-		if (typeInput.Length - 1 > 0)
-			typeInput = typeInput.Substring(0, typeInput.Length - 1);
-		else
-		{
-			Debug.Log($"Typed input:{typeInput}");
-			typeInput = "";
-		}
-		TypeUI.instance.DisplayKeystrokes();
-    }
 
 	public void Clear()
 	{

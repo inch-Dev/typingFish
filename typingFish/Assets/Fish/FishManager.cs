@@ -49,7 +49,12 @@ public class FishManager : MonoBehaviour, IStateable
     Fish catchingFish;
 
     public Fish GetCatchingFish() { return catchingFish; }
-    public void SetCatchingFish(Fish fish) { catchingFish = fish; }
+    public void SetCatchingFish(Fish fish)
+    { 
+        catchingFish = fish;
+        if(fish != null)
+            fish.Catching();
+    }
 
     public FishData GetRandomFishData()
     {
@@ -167,8 +172,7 @@ public class FishManager : MonoBehaviour, IStateable
             caughtFishData.Add(fish.fishData);
 
         spawnedFish.Remove(fish);
-        Destroy(fish.gameObject);
-        GameManager.instance.SetState(GameState.CASTING);
+        fish.Caught();
         SpawnFish();
     }
 
@@ -182,8 +186,7 @@ public class FishManager : MonoBehaviour, IStateable
     {
         //Debug.Log("Missed!");
         spawnedFish.Remove(fish);
-        Destroy(fish.gameObject);
-        GameManager.instance.SetState(GameState.CASTING);
+        fish.Missed();
         SpawnFish();
     }
 

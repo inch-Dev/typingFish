@@ -15,6 +15,7 @@ public class Fish : MonoBehaviour, IStateable
 {
     public CapsuleCollider2D collider;
 	public FishData fishData;
+    Animator animator;
 
     [SerializeField] float ascendSpeed;
     [SerializeField] Vector2 moveSpeedRange;
@@ -55,6 +56,7 @@ public class Fish : MonoBehaviour, IStateable
         collider = GetComponentInChildren<CapsuleCollider2D>();
         moveSpeed = Random.Range(moveSpeedRange.x, moveSpeedRange.y);
         fishingResetYPosition = transform.position.y;
+        animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -67,6 +69,27 @@ public class Fish : MonoBehaviour, IStateable
     {
         Vector3 acceleration = new Vector3(moveSpeed * moveDirection.x * Time.fixedDeltaTime, ascendSpeed * Time.fixedDeltaTime);
         transform.position += acceleration;
+    }
+
+    public void Catching()
+    {
+        animator.SetTrigger("isCatching");
+    }
+
+    public void Missed()
+    {
+        animator.SetTrigger("isMissed");
+    }
+
+    public void Caught()
+    {
+        animator.SetTrigger("isCaught");
+    }
+
+    void DestroySelf()
+    {
+        GameManager.instance.SetState(GameState.CASTING);
+        Destroy(gameObject);
     }
 
 }

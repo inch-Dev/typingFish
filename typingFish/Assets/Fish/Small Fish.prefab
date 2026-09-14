@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 827708039618006252, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 827708039618006252, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3448116862057499245, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
       propertyPath: m_Name
@@ -27,6 +27,18 @@ PrefabInstance:
     - target: {fileID: 3988003558233964794, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
       propertyPath: moveDirection.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394565151076585731, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394565151076585731, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394565151076585731, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 4394565151076585731, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
       propertyPath: m_LocalPosition.x
@@ -70,11 +82,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5428170302357972760, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
       propertyPath: m_Size.x
-      value: 0.59
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5428170302357972760, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
       propertyPath: m_Size.y
-      value: 0.43
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8151920972346094036, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
       propertyPath: m_Simulated

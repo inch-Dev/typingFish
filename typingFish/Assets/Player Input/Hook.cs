@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -15,8 +16,13 @@ public class Hook : MonoBehaviour, IStateable
 			case GameState.CASTING:
 				Toggle(true);
 				isFollowingMouse = false;
+
+				if(!wasCasting)
+                    MoveToCastPosition();
+
+                wasCasting = true;
 				isCasting = true;
-				MoveToCastPosition();
+				
 				break;
 			case GameState.FISHING:
 				isFollowingMouse = true;
@@ -44,6 +50,7 @@ public class Hook : MonoBehaviour, IStateable
 
 
 	bool isCasting = false;
+	bool wasCasting = false;
 	bool isFollowingMouse = false;
 
 	Rigidbody2D rb;
@@ -70,6 +77,7 @@ public class Hook : MonoBehaviour, IStateable
 			{
 				isCasting = false;
 				castTimeElapsed = 0f;
+				wasCasting = false;
 				GameManager.instance.SetState(GameState.FISHING);
 			}
 

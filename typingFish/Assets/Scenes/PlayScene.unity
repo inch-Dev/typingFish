@@ -1361,6 +1361,10 @@ PrefabInstance:
       propertyPath: 'activeGameStates.Array.data[0]'
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2262039028813706659, guid: 800bb2fa982c4cb449d22a310a4c0452, type: 3}
+      propertyPath: 'activeGameStates.Array.data[1]'
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2412936331658627292, guid: 800bb2fa982c4cb449d22a310a4c0452, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

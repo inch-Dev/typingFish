@@ -19,7 +19,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField] GameState curState = GameState.NULL;
+    GameState curState = GameState.NULL;
+    GameState lastState;
 
     List<IStateable> stateables = new List<IStateable>();
 
@@ -46,7 +47,9 @@ public class GameManager : MonoBehaviour
     {
         SetStateables();
 
+        lastState = curState;
         curState = state;
+
         Debug.Log($"Setting state to {curState}");
         foreach(IStateable stateable in stateables)
         {
@@ -60,6 +63,8 @@ public class GameManager : MonoBehaviour
         if (instance == null)
             instance = this;
 
+        lastState = curState;
+
         SetStateables();
         SetState(GameState.START);
     }
@@ -67,6 +72,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (curState == GameState.PAUSED)
+                SetState(lastState);
+            else
+                SetState(GameState.PAUSED);
+        }
     }
 }

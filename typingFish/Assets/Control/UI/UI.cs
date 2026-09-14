@@ -23,7 +23,7 @@ public class UI : MonoBehaviour, IStateable
 
 	public string uiName;
 	protected bool isActive = false;
-	public CanvasGroup canvasGroup;
+	protected CanvasGroup canvasGroup;
 	[SerializeField] List<GameState> activeGameStates = new List<GameState>();
 
 	public void Toggle(bool isEnabled)
@@ -33,5 +33,10 @@ public class UI : MonoBehaviour, IStateable
 		canvasGroup.blocksRaycasts = isEnabled;
 		canvasGroup.alpha = isEnabled ? 1 : 0;
 	}
+
+    private void Awake()
+    {
+		canvasGroup = GetComponent<CanvasGroup>();
+    }
 
 }

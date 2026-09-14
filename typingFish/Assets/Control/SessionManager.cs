@@ -6,12 +6,14 @@ public class SessionManager : MonoBehaviour, IStateable
     {
         switch (GameManager.instance.GetState())
         {
-            case GameState.CASTING:
+            case GameState.START:
             case GameState.PAUSED:
+            case GameState.SESSION_OVER:
                 isCountingTimer = false;
                 break;
             case GameState.FISHING:
             case GameState.TYPING:
+            case GameState.CASTING:
                 isCountingTimer = true;
                 break;
         }
@@ -27,6 +29,7 @@ public class SessionManager : MonoBehaviour, IStateable
     {
         if (instance == null)
             instance = this;
+        SessionUI.instance.DisplayTime(sessionTimeSeconds);
     }
 
     private void FixedUpdate()

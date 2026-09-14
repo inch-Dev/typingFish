@@ -6,12 +6,12 @@ using UnityEngine;
 public enum GameState
 {
     NULL = -1,
-    START = 0,
-    CASTING = 1,
-    FISHING = 2,
-    TYPING = 4,
-    PAUSED = 6,
-    SESSION_OVER = 8,
+    START,
+    CASTING,
+    FISHING,
+    TYPING,
+    PAUSED,
+    SESSION_OVER,
 }
 
 
@@ -56,6 +56,14 @@ public class GameManager : MonoBehaviour
             stateable.HandleState();
         }
 
+    }
+
+    public void Unpause()
+    {
+        if(GetState() == GameState.PAUSED)
+        {
+            SetState(lastState);
+        }
     }
 
     void Start()

@@ -9,6 +9,9 @@ public class PlayerCamera : MonoBehaviour, IStateable
             case GameState.TYPING:
                 isFollowingPlayer = false;
                 break;
+            case GameState.CASTING:
+                isFollowingPlayer = true;
+                break;
             case GameState.FISHING:
                 isFollowingPlayer = true;
                 break;

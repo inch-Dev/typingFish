@@ -9,30 +9,48 @@ public class Hook : MonoBehaviour, IStateable
 	{
 		switch(GameManager.instance.GetState())
 		{
-			case GameState.FISHING:
+			case GameState.START:
 				Toggle(true);
-				MoveToFishPosition();
+				break;
+			case GameState.CASTING:
+				Toggle(true);
+				isFollowingMouse = false;
+				isCasting = true;
+				MoveToCastPosition();
+				break;
+			case GameState.FISHING:
+				isFollowingMouse = true;
+				isCasting = false;
+				castTimeElapsed = 0f;
+				ToggleLogic(true);
 				break;
 			case GameState.TYPING:
 			case GameState.PAUSED:
-				ToggleLogic(false);
-				break;
 			case GameState.SESSION_OVER:
+				isCasting = false;
 				ToggleLogic(false);
 				break;
 		}
 	}
-	[SerializeField] Vector3 fishingResetPosition;
+	[Header("Casting")]
+	[SerializeField] Vector3 castingResetPosition;
+	[SerializeField] float castingTime;
+	float castTimeElapsed = 0f;
+	[SerializeField] float castingSpeed;
+
+	[Header("Fishing")]
 	[SerializeField] Vector2 horizontalRangeClamp;
 	[SerializeField] float verticalMoveSpeed;
 	[SerializeField] float horizontalMoveSpeed;
 
-	bool isFollowing = false;
+
+	bool isCasting = false;
+	bool isFollowingMouse = false;
 
 	Rigidbody2D rb;
 	CircleCollider2D circleCollider;
 
-	SpriteRenderer spriteRenderer;
+	[SerializeField] SpriteRenderer spriteRenderer;
 
 	private void Start()
 	{
@@ -46,7 +64,20 @@ public class Hook : MonoBehaviour, IStateable
 
 	private void FixedUpdate()
 	{
-		if(isFollowing)
+		if(isCasting)
+		{
+			castTimeElapsed += Time.fixedDeltaTime;
+			if (castTimeElapsed >= castingTime)
+			{
+				isCasting = false;
+				castTimeElapsed = 0f;
+			}
+
+			else
+				CastMove();
+		}
+
+		if(isFollowingMouse)
 			FollowMouse();
 	}
 
@@ -56,36 +87,37 @@ public class Hook : MonoBehaviour, IStateable
 		mousePosition = new Vector3(mousePosition.x, mousePosition.y, 0f);
 		Vector2 newPosition = Vector2.Lerp(transform.position, mousePosition, horizontalMoveSpeed);
 		transform.position = new Vector2(Mathf.Clamp(newPosition.x, horizontalRangeClamp.x, horizontalRangeClamp.y), transform.position.y);
-		//Apply ForceDown
 	}
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (collision.gameObject.GetComponentInParent<Fish>())
-		{
-			GameManager.instance.SetState(GameState.TYPING);
-			collision.gameObject.GetComponentInParent<Fish>().SetMove(false);
-			FishManager.instance.SetCatchingFish(collision.gameObject.GetComponentInParent<Fish>());
-		}
-	}
-
 	void Toggle(bool isOn)
 	{
-		circleCollider.enabled = isOn;
-		rb.simulated = isOn;
 		spriteRenderer.enabled = isOn;
-		isFollowing = isOn;
+		isFollowingMouse = isOn;
 	}
 
 	void ToggleLogic(bool isOn)
 	{
         circleCollider.enabled = isOn;
         rb.simulated = isOn;
-		isFollowing = isOn;
+		isFollowingMouse = isOn;
     }
 
-	void MoveToFishPosition()
+	void MoveToCastPosition()
 	{
-		//Debug.Log("Resetting Mouse");
-		transform.position = fishingResetPosition;
+		transform.position = castingResetPosition;
 	}
+
+	void CastMove()
+	{
+		transform.position = new Vector3(transform.position.x, transform.position.y + (castingSpeed * Time.fixedDeltaTime), 0f);
+	}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponentInParent<Fish>())
+        {
+            GameManager.instance.SetState(GameState.TYPING);
+            collision.gameObject.GetComponentInParent<Fish>().SetMove(false);
+            FishManager.instance.SetCatchingFish(collision.gameObject.GetComponentInParent<Fish>());
+        }
+    }
 }

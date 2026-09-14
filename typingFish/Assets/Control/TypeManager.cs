@@ -45,7 +45,7 @@ public class TypeManager : MonoBehaviour, IStateable
 		learningWord = newWord;
 		SetLearningWordValue(newWord.value);
 
-		TypeUI.instance.DisplayWord();
+		TypeUI.instance.DisplayWord(newWord.value);
 
 		learningWord.timesEncountered++;
 	}
@@ -69,6 +69,21 @@ public class TypeManager : MonoBehaviour, IStateable
 		if (typeInput == learningWordValue || typeInput.Length == learningWordValue.Length)
 			TypedWord();
 	}
+
+	public void DeleteTypeInputChar()
+	{
+		if(typeInput.Length - 1 > 0)
+		{
+			typeInput = typeInput.Substring(0, typeInput.Length - 1);
+		}
+
+		else
+		{
+			typeInput = "";
+		}
+
+        TypeUI.instance.DisplayKeystrokes();
+    }
 
 	public void Clear()
 	{

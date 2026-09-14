@@ -78,6 +78,12 @@ public class Keyboard : MonoBehaviour, IStateable
                     TypeManager.instance.AddTypeInput(curLetter);
 					return activeKey.ToString();
 				}
+
+                else if (activeKey == KeyCode.Delete || activeKey == KeyCode.Backspace)
+                {
+                    TypeManager.instance.DeleteTypeInputChar();
+                    return activeKey.ToString();
+                }
             }
         }
 

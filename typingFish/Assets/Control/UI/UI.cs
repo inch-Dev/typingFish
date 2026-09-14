@@ -1,32 +1,37 @@
+using NUnit.Framework;
 using UnityEngine;
-public class UI : MonoBehaviour
+using System.Collections.Generic;
+public class UI : MonoBehaviour, IStateable
 {
+	public void HandleState()
+	{
+		GameState checkState = GameManager.instance.GetState();
+		bool matchState = false;
+
+		foreach (GameState gameState in activeGameStates)
+		{
+			if(gameState == checkState)
+			{
+				Toggle(true);
+				matchState = true;
+			}
+		}
+
+		if (!matchState)
+			Toggle(false);
+	}	
+
 	public string uiName;
 	protected bool isActive = false;
 	public CanvasGroup canvasGroup;
-	public GameState activeStates;
+	[SerializeField] List<GameState> activeGameStates = new List<GameState>();
 
-	public void Toggle(bool isActive)
+	public void Toggle(bool isEnabled)
 	{
-		this.isActive = isActive;
-		canvasGroup.interactable = isActive;
-		canvasGroup.blocksRaycasts = isActive;
-		canvasGroup.alpha = isActive ? 1 : 0;
+		isActive = isEnabled;
+		canvasGroup.interactable = isEnabled;
+		canvasGroup.blocksRaycasts = isEnabled;
+		canvasGroup.alpha = isEnabled ? 1 : 0;
 	}
 
-	public void Toggle(GameState state)
-	{
-		if (!activeStates.HasFlag(state))
-			Toggle(false);
-
-		else
-			Toggle(true);
-	}
-
-	public void Toggle(GameState state, bool isActive)
-	{
-		if (!activeStates.HasFlag(state))
-			return;
-		Toggle(isActive);
-	}
 }

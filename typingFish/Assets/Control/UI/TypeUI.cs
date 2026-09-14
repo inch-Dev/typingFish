@@ -35,11 +35,9 @@ public class TypeUI : UI
         //Debug.Log("Timer Values...Max:{timeSlider.maxValue}, Value:{timeSlider.value}");
     }
 
-    public void DisplayWord()
+    public void DisplayWord(string wordToDisplay)
     {
-        if (!isActive)
-            return;
-        wordTF.text = TypeManager.instance.GetLearningWordValue();
+        wordTF.text = wordToDisplay;
         Debug.Log($"Setting ui to {wordTF.text}");
     }
 
@@ -60,7 +58,10 @@ public class TypeUI : UI
         {
             ValidateKeystroke(i);
         }
-	}
+
+        if (typedInput.Length == 0)
+            typeText.text = "";
+    }
 
     bool ValidateKeystroke(int index)
     {

@@ -20,6 +20,7 @@ public class Fish : MonoBehaviour, IStateable
     [SerializeField] Vector2 moveSpeedRange;
     public float moveSpeed;
     public Vector2 moveDirection;
+    float fishingResetYPosition;
     bool canMove = true;
 
 
@@ -35,6 +36,7 @@ public class Fish : MonoBehaviour, IStateable
             case GameState.FISHING:
                 collider.enabled = true;
                 canMove = true;
+                transform.position = new Vector3(transform.position.x, fishingResetYPosition, 0f);
                 break;
             case GameState.PAUSED:
             case GameState.SESSION_OVER:
@@ -48,6 +50,7 @@ public class Fish : MonoBehaviour, IStateable
     {
         collider = GetComponentInChildren<CapsuleCollider2D>();
         moveSpeed = Random.Range(moveSpeedRange.x, moveSpeedRange.y);
+        fishingResetYPosition = transform.position.y;
     }
 
     private void FixedUpdate()

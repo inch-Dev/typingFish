@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 
-[Flags]
 public enum GameState
 {
-    NULL = 0,
+    NULL = -1,
+    START = 0,
     CASTING = 1,
     FISHING = 2,
     TYPING = 4,
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
             instance = this;
 
         SetStateables();
-        SetState(GameState.CASTING);
+        SetState(GameState.START);
     }
 
     // Update is called once per frame

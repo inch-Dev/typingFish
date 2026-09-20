@@ -17,6 +17,8 @@ public class Fish : MonoBehaviour, IStateable
 	public FishData fishData;
     Animator animator;
 
+    SpriteRenderer spriteRenderer;
+    public SpriteRenderer GetSpriteRenderer(){ return  spriteRenderer; }
     [SerializeField] float ascendSpeed;
     [SerializeField] Vector2 moveSpeedRange;
     public float moveSpeed;
@@ -51,12 +53,18 @@ public class Fish : MonoBehaviour, IStateable
         }
     }
 
-    private void Start()
+	private void Awake()
+	{
+		collider = GetComponentInChildren<CapsuleCollider2D>();
+		moveSpeed = Random.Range(moveSpeedRange.x, moveSpeedRange.y);
+		fishingResetYPosition = transform.position.y;
+		animator = GetComponent<Animator>();
+		spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+	}
+
+	private void Start()
     {
-        collider = GetComponentInChildren<CapsuleCollider2D>();
-        moveSpeed = Random.Range(moveSpeedRange.x, moveSpeedRange.y);
-        fishingResetYPosition = transform.position.y;
-        animator = GetComponent<Animator>();
+        
     }
 
     private void FixedUpdate()

@@ -117,6 +117,7 @@ public class FishManager : MonoBehaviour, IStateable
             case 0:
                 spawnX = spawnSideDistances.x;
                 moveDirection = Vector2.right;
+
                 break;
             case 1:
                 spawnX = spawnSideDistances.y;
@@ -140,6 +141,8 @@ public class FishManager : MonoBehaviour, IStateable
 
 
         fish.moveDirection = moveDirection;
+        if (moveDirection == Vector2.left)
+            fish.GetSpriteRenderer().flipX = true;
         fish.SetMove(true);
 
         switch (GameManager.instance.GetState())

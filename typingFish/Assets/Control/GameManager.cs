@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         lastState = curState;
         curState = state;
 
-        Debug.Log($"Setting state to {curState}");
+        //Debug.Log($"Setting state to {curState}");
         foreach(IStateable stateable in stateables)
         {
             stateable.HandleState();

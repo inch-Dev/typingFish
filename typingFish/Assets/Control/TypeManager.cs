@@ -116,7 +116,7 @@ public class TypeManager : MonoBehaviour, IStateable
 
 	void ChooseLearningWord()
 	{
-		SetLearningWord(WordManager.instance.GetRandomWord(false));
+		SetLearningWord(WordManager.instance.GetRandomLearningWord());
 	}
 
 	void TypedWord()

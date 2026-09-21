@@ -19,6 +19,8 @@ public class WordManager : MonoBehaviour
 
     [SerializeField] int learnThreshold = 0;
 
+    WordDifficulty learningDifficulty = WordDifficulty.EASY;
+    public WordDifficulty GetLearningDifficulty() { return learningDifficulty; }
 
 	#region GET WORD
 	public Word GetWord(string wordValue)
@@ -164,6 +166,33 @@ public class WordManager : MonoBehaviour
         int index = Random.Range(0, wordList.Count);
         return wordList[index];
     }
+
+    public Word GetRandomLearningWord()
+    {
+        Word learningWord;
+
+        List<Word> learningWordOptions = new List<Word>();
+
+        for(int i = 0; i <= (int)learningDifficulty; i++)
+        {
+            Debug.Log($"Looking for difficulty {(WordDifficulty)i}");
+            learningWordOptions[i] = GetRandomWord(false, (WordDifficulty)i);
+            
+        }
+
+        if (learningWordOptions.Count > 1)
+        {
+            int randomIndex = Random.Range(0, learningWordOptions.Count);
+
+            learningWord = learningWordOptions[randomIndex];
+        }
+        else
+            learningWord = learningWordOptions[0];
+
+
+            return learningWord;
+    }
+
     #endregion
 
 	#region GET RANDOM WORDS
@@ -270,7 +299,11 @@ public class WordManager : MonoBehaviour
         if(!learnedWords.Contains(word))
             learnedWords.Add(word);
 
-        //Check if bump up a difficulty, halfway through?
+        List<Word> learnedWordsOfDifficulty = GetWords(learningDifficulty, learnedWords);
+        List<Word> allWordsOfDifficulty = GetWords(learningDifficulty);
+        float learnPercent = ((float)learnedWordsOfDifficulty.Count) / ((float)allWordsOfDifficulty.Count);
+        if (learnPercent >= .5)
+            learningDifficulty++;
     }
 	void ClearWords()
     {
@@ -295,7 +328,7 @@ public class WordManager : MonoBehaviour
 
             if (newWord.hasLearned)
                 learnedWords.Add(newWord);
-            else
+            else if(newWord.difficulty <= learningDifficulty)
                 learningWords.Add(newWord);
         }
     }

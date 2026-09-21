@@ -20,8 +20,6 @@ public class UI : MonoBehaviour, IStateable
 		if (!matchState)
 			Toggle(false);
 	}	
-
-	public string uiName;
 	protected bool isActive = false;
 	protected CanvasGroup canvasGroup;
 	[SerializeField] List<GameState> activeGameStates = new List<GameState>();

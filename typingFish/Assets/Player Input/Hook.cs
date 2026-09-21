@@ -48,6 +48,9 @@ public class Hook : MonoBehaviour, IStateable
 	[SerializeField] Vector2 horizontalRangeClamp;
 	[SerializeField] float horizontalMoveSpeed;
 
+	[Header("Visuals")]
+	[SerializeField] Vector3 hookLineOriginPosition;
+
 
 	bool isCasting = false;
 	bool wasCasting = false;
@@ -55,7 +58,7 @@ public class Hook : MonoBehaviour, IStateable
 
 	Rigidbody2D rb;
 	CircleCollider2D circleCollider;
-
+	LineRenderer lineRenderer;
 	[SerializeField] SpriteRenderer spriteRenderer;
 
 	private void Start()
@@ -66,9 +69,20 @@ public class Hook : MonoBehaviour, IStateable
 		rb = GetComponent<Rigidbody2D>();
 		circleCollider = GetComponent<CircleCollider2D>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
+		lineRenderer = GetComponentInChildren<LineRenderer>();
+
+
 	}
 
-	private void FixedUpdate()
+    private void Update()
+    {
+		lineRenderer.positionCount = 0;
+        lineRenderer.positionCount = 2;
+        lineRenderer.SetPosition(0, hookLineOriginPosition);
+        lineRenderer.SetPosition(1, transform.position);
+    }
+
+    private void FixedUpdate()
 	{
 		if(isCasting)
 		{

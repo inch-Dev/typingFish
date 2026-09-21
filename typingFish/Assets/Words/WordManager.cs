@@ -269,6 +269,8 @@ public class WordManager : MonoBehaviour
 
         if(!learnedWords.Contains(word))
             learnedWords.Add(word);
+
+        //Check if bump up a difficulty, halfway through?
     }
 	void ClearWords()
     {

@@ -176,7 +176,7 @@ public class WordManager : MonoBehaviour
         for(int i = 0; i <= (int)learningDifficulty; i++)
         {
             Debug.Log($"Looking for difficulty {(WordDifficulty)i}");
-            learningWordOptions[i] = GetRandomWord(false, (WordDifficulty)i);
+            learningWordOptions.Add(GetRandomWord(false, (WordDifficulty)i));
             
         }
 

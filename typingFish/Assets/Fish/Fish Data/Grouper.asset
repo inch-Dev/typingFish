@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Grouper
   m_EditorClassIdentifier: 
   fishName: Grouper
-  fishSprite: {fileID: 0}
+  fishSprite: {fileID: 5658727670481261011, guid: d84440ce9b3419949bc9639053143761, type: 3}
   fishSize: 1
   isCaught: 0

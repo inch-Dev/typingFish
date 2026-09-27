@@ -68,7 +68,7 @@ public class Hook : MonoBehaviour, IStateable
 
 		rb = GetComponent<Rigidbody2D>();
 		circleCollider = GetComponent<CircleCollider2D>();
-		spriteRenderer = GetComponent<SpriteRenderer>();
+		spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 		lineRenderer = GetComponentInChildren<LineRenderer>();
 
 

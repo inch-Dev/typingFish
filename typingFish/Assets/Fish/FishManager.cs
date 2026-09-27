@@ -128,6 +128,7 @@ public class FishManager : MonoBehaviour, IStateable
         //Spawn At Position
         float spawnOffset = Random.Range(verticalSpawnOffsetRange.x, verticalSpawnOffsetRange.y);
         GameObject newFish =GameObject.Instantiate(prefab, new Vector3(spawnX, Hook.instance.transform.position.y + spawnOffset,0), Quaternion.identity);
+        newFish.transform.SetParent(null);
         Fish fish = newFish.GetComponent<Fish>();
         fish.fishData = fishData;
 
@@ -142,7 +143,7 @@ public class FishManager : MonoBehaviour, IStateable
 
         fish.moveDirection = moveDirection;
         if (moveDirection == Vector2.left)
-            fish.GetSpriteRenderer().flipX = true;
+           fish.GetSpriteRenderer().flipX = true;
         fish.SetMove(true);
 
         switch (GameManager.instance.GetState())

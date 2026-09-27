@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4777452252463181261
+--- !u!1001 &3909692599460500688
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,36 +8,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 827708039618006252, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 827708039618006252, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3448116862057499245, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
       propertyPath: m_Name
       value: Large Fish
       objectReference: {fileID: 0}
-    - target: {fileID: 3988003558233964794, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
-      propertyPath: fishData
-      value: 
-      objectReference: {fileID: 11400000, guid: 137cecc8bc0187245b973fe29d93698c, type: 2}
-    - target: {fileID: 3988003558233964794, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
-      propertyPath: moveDirection.x
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4394565151076585731, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4394565151076585731, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4394565151076585731, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
-      propertyPath: m_LocalScale.z
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4394565151076585731, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
@@ -83,31 +63,7 @@ PrefabInstance:
     - target: {fileID: 5238893023238364874, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 2166354338749105061, guid: 5f49beb9adaafcf48a8c4f3713118943, type: 3}
-    - target: {fileID: 5238893023238364874, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5238893023238364874, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5238893023238364874, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5428170302357972760, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
-      propertyPath: m_Size.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5428170302357972760, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8151920972346094036, guid: b95bc3fe695aaa349b770f11547c4d10, type: 3}
-      propertyPath: m_Simulated
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: -3652649347111659884, guid: 9c373de081f1beb4d95f5c1d196d5e38, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

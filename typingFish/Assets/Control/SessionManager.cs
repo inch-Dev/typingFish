@@ -29,7 +29,7 @@ public class SessionManager : MonoBehaviour, IStateable
     {
         if (instance == null)
             instance = this;
-        SessionUI.instance.DisplayTime(sessionTimeSeconds);
+        //SessionUI.instance.DisplayTime(sessionTimeSeconds);
     }
 
     private void FixedUpdate()

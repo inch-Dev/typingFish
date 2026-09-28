@@ -25,6 +25,7 @@ public class Fish : MonoBehaviour, IStateable
     public Vector2 moveDirection;
     float fishingResetYPosition;
     bool canMove = true;
+    bool isBeingCaught = false;
 
     public void SetMove(bool move) { canMove = move; }
 	public void HandleState()
@@ -68,7 +69,7 @@ public class Fish : MonoBehaviour, IStateable
 
     private void FixedUpdate()
     {
-        if(canMove)
+        if(canMove && !isBeingCaught)
             Move();
     }
 
@@ -80,6 +81,7 @@ public class Fish : MonoBehaviour, IStateable
 
     public void Catching()
     {
+        isBeingCaught = true;
         animator.SetTrigger("isCatching");
     }
 

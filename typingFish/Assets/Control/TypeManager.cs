@@ -11,7 +11,11 @@ public class TypeManager : MonoBehaviour, IStateable
 		{
 			isActive = true;
 			canType = true;
-			ChooseLearningWord();
+			if (!wasTyping)
+			{
+				ChooseLearningWord();
+			}
+			wasTyping = true;
 		}
 		else
 		{
@@ -26,6 +30,7 @@ public class TypeManager : MonoBehaviour, IStateable
 
 
 	bool canType = false;
+	bool wasTyping = false;
 	float timeToType = 0f;
 
 	public float GetTimeToType(){ return timeToType; }
@@ -137,10 +142,9 @@ public class TypeManager : MonoBehaviour, IStateable
 		{
 			FishManager.instance.MissFish();
 		}
-
-			learningWord.UpdateStats();
-
+		learningWord.UpdateStats();
 		timeToType = 0f;
+		wasTyping = false;
 		Clear();
 	}
 

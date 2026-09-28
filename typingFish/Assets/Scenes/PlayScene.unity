@@ -2644,18 +2644,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1511138064}
     m_Modifications:
-    - target: {fileID: 2559663185476235775, guid: 104a49b5103d59e409dedb9e2a625b29, type: 3}
-      propertyPath: castingTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2559663185476235775, guid: 104a49b5103d59e409dedb9e2a625b29, type: 3}
-      propertyPath: castingSpeed
-      value: -7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2559663185476235775, guid: 104a49b5103d59e409dedb9e2a625b29, type: 3}
-      propertyPath: hookLineOriginPosition.y
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 7459527889608391800, guid: 104a49b5103d59e409dedb9e2a625b29, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

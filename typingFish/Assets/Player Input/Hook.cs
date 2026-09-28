@@ -50,6 +50,7 @@ public class Hook : MonoBehaviour, IStateable
 
 	[Header("Visuals")]
 	[SerializeField] Vector3 hookLineOriginPosition;
+	[SerializeField] Vector3 hookLineConnectPositionOffset;
 
 
 	bool isCasting = false;
@@ -79,7 +80,7 @@ public class Hook : MonoBehaviour, IStateable
 		lineRenderer.positionCount = 0;
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, hookLineOriginPosition);
-        lineRenderer.SetPosition(1, transform.position);
+        lineRenderer.SetPosition(1, transform.position + hookLineConnectPositionOffset);
     }
 
     private void FixedUpdate()

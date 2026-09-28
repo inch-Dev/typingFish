@@ -32,8 +32,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1170789125443202957}
   - {fileID: 7892806523351077133}
+  - {fileID: 1170789125443202957}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &2025737051013665522
@@ -116,7 +116,8 @@ MonoBehaviour:
   castingSpeed: 0
   horizontalRangeClamp: {x: -5, y: 5}
   horizontalMoveSpeed: 0.1
-  hookLineOriginPosition: {x: 0, y: 0, z: 0}
+  hookLineOriginPosition: {x: 0, y: 2, z: 0}
+  hookLineConnectPosition: {x: 0, y: 1, z: 0}
   spriteRenderer: {fileID: 0}
 --- !u!1 &4388725541171844015
 GameObject:
@@ -197,7 +198,7 @@ LineRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Positions: []
   m_Parameters:
@@ -249,7 +250,7 @@ LineRenderer:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
-    numCapVertices: 0
+    numCapVertices: 82
     alignment: 0
     textureMode: 0
     textureScale: {x: 1, y: 1}

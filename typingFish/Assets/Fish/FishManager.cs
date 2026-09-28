@@ -47,6 +47,7 @@ public class FishManager : MonoBehaviour, IStateable
     [SerializeField] Vector2 verticalSpawnOffsetRange;
 
     Fish catchingFish;
+    int _fishCaught;
 
     public Fish GetCatchingFish() { return catchingFish; }
     public void SetCatchingFish(Fish fish)
@@ -177,6 +178,8 @@ public class FishManager : MonoBehaviour, IStateable
 
         spawnedFish.Remove(fish);
         fish.Caught();
+        ScoreManager.instance.CatchFish();
+        ScoreManager.instance.SetFishCaughtSize(fish.fishData.fishSize);
         SpawnFish();
     }
 

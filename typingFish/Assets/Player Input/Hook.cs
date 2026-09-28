@@ -15,7 +15,7 @@ public class Hook : MonoBehaviour, IStateable
 				break;
 			case GameState.CASTING:
 				Toggle(true);
-				isFollowingMouse = false;
+				isMoving = true;
 
 				if(!wasCasting)
                     MoveToCastPosition();
@@ -25,7 +25,7 @@ public class Hook : MonoBehaviour, IStateable
 				
 				break;
 			case GameState.FISHING:
-				isFollowingMouse = true;
+				isMoving = true;
 				isCasting = false;
 				castTimeElapsed = 0f;
 				ToggleLogic(true);
@@ -54,7 +54,7 @@ public class Hook : MonoBehaviour, IStateable
 
 	bool isCasting = false;
 	bool wasCasting = false;
-	bool isFollowingMouse = false;
+	bool isMoving = false;
 
 	Rigidbody2D rb;
 	CircleCollider2D circleCollider;
@@ -99,28 +99,36 @@ public class Hook : MonoBehaviour, IStateable
 				CastMove();
 		}
 
-		if(isFollowingMouse)
-			FollowMouse();
+		if(isMoving)
+		{
+			if(Input.GetKey(KeyCode.F))
+			{
+				Move(-horizontalMoveSpeed);
+			}
+
+			else if(Input.GetKey(KeyCode.J))
+			{
+				Move(horizontalMoveSpeed);
+			}
+		}
 	}
 
-    void FollowMouse()
+    void Move(float moveSpeed)
     {
-		Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		mousePosition = new Vector3(mousePosition.x, mousePosition.y, 0f);
-		Vector2 newPosition = Vector2.Lerp(transform.position, mousePosition, horizontalMoveSpeed);
-		transform.position = new Vector2(Mathf.Clamp(newPosition.x, horizontalRangeClamp.x, horizontalRangeClamp.y), transform.position.y);
+		transform.position += new Vector3(moveSpeed, 0f, 0f);
+		transform.position = new Vector3(Mathf.Clamp(transform.position.x, horizontalRangeClamp.x, horizontalRangeClamp.y), transform.position.y, 0f);
 	}
 	void Toggle(bool isOn)
 	{
 		spriteRenderer.enabled = isOn;
-		isFollowingMouse = isOn;
+		isMoving = isOn;
 	}
 
 	void ToggleLogic(bool isOn)
 	{
         circleCollider.enabled = isOn;
         rb.simulated = isOn;
-		isFollowingMouse = isOn;
+		isMoving = isOn;
     }
 
 	void MoveToCastPosition()

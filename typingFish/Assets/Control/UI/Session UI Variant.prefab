@@ -32,11 +32,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5181239289795712685}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 551, y: 534}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &7189358039339875204
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0:00
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 318d82e56d73e3046af91d88a1d86ae6, type: 2}
+  m_sharedMaterial: {fileID: -123330543766308888, guid: 318d82e56d73e3046af91d88a1d86ae6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -155,7 +155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6833169097711787594, guid: 4fd29c24689ca3144ada3246017fdaf1, type: 3}
       propertyPath: m_Pivot.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6833169097711787594, guid: 4fd29c24689ca3144ada3246017fdaf1, type: 3}
       propertyPath: m_AnchorMax.x
@@ -163,7 +163,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6833169097711787594, guid: 4fd29c24689ca3144ada3246017fdaf1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6833169097711787594, guid: 4fd29c24689ca3144ada3246017fdaf1, type: 3}
       propertyPath: m_AnchorMin.x
@@ -171,11 +171,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6833169097711787594, guid: 4fd29c24689ca3144ada3246017fdaf1, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6833169097711787594, guid: 4fd29c24689ca3144ada3246017fdaf1, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6833169097711787594, guid: 4fd29c24689ca3144ada3246017fdaf1, type: 3}
       propertyPath: m_SizeDelta.y
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bde0dc6d45ce754f8bc996548a9a9ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SessionUI
-  activeGameStates: 
+  activeGameStates: 000000000100000002000000030000000400000005000000
   sessionTF: {fileID: 7684305939820840872}
 --- !u!224 &5181239289795712685 stripped
 RectTransform:

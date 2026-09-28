@@ -26,7 +26,6 @@ public class Fish : MonoBehaviour, IStateable
     float fishingResetYPosition;
     bool canMove = true;
 
-
     public void SetMove(bool move) { canMove = move; }
 	public void HandleState()
 	{

@@ -128,6 +128,7 @@ public class TypeManager : MonoBehaviour, IStateable
 		if (typeInput == learningWordValue)
 		{
 			learningWord.speed += timeToType;
+			ScoreManager.instance.SetScoredWordDifficulty(learningWord.difficulty);
 			WordManager.instance.TypedWord(learningWord);
 			FishManager.instance.CatchFish();
 		}

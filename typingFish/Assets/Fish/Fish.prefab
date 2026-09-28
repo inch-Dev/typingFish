@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collider: {fileID: 5428170302357972760}
   fishData: {fileID: 11400000, guid: bd1b50d34af40d84b9f3ec42f4dec249, type: 2}
-  ascendSpeed: 1
+  ascendSpeed: 2
   moveSpeedRange: {x: 3, y: 4}
   moveSpeed: 1
   moveDirection: {x: -1, y: 0}

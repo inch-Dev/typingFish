@@ -49,10 +49,10 @@ public class TypeUI : UI
         string typedInput = TypeManager.instance.GetTypeInput();
 		char[] typedInputArray = typedInput.ToCharArray();
 
+        Debug.Log($"Typed input:{typedInput}");
+
         if (typedInput.Length > TypeManager.instance.GetLearningWordValue().Length)
             return;
-
-        //Debug.Log($"Typed input:{typedInput}");
 
 		for(int i = 0; i < typedInputArray.Length; i++)
         {

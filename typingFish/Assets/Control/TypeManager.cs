@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TypeManager : MonoBehaviour, IStateable
 {
@@ -49,8 +50,10 @@ public class TypeManager : MonoBehaviour, IStateable
 		Debug.Log($"Learning:{newWord.value}");
 		learningWord = newWord;
 		SetLearningWordValue(newWord.value);
+        typeInput = "";
 
-		TypeUI.instance.DisplayWord(newWord.value);
+        TypeUI.instance.DisplayWord(newWord.value);
+		
 
 		learningWord.timesEncountered++;
 	}
@@ -67,16 +70,25 @@ public class TypeManager : MonoBehaviour, IStateable
 			TypedWord();
 	}
 	public void AddTypeInput(char newLetter)
-	{  
-		typeInput += newLetter;
-		TypeUI.instance.DisplayKeystrokes();
+	{
+		if (!canType)
+			return;
 
-		if (typeInput == learningWordValue || typeInput.Length == learningWordValue.Length)
-			TypedWord();
+		if(typeInput.Length == 0 || typeInput.Length + 1 <= learningWordValue.Length)
+		{
+            typeInput += newLetter;
+            TypeUI.instance.DisplayKeystrokes();
+
+            if (typeInput == learningWordValue)
+                TypedWord();
+        }
 	}
 
 	public void DeleteTypeInputChar()
 	{
+		if (!canType)
+			return;
+
 		if(typeInput.Length - 1 > 0)
 		{
 			typeInput = typeInput.Substring(0, typeInput.Length - 1);
@@ -114,6 +126,7 @@ public class TypeManager : MonoBehaviour, IStateable
 
 			if(timeToType >= typeTimer)
 			{
+				canType = false;
 				TypedWord();
 			}
 		}
@@ -126,7 +139,7 @@ public class TypeManager : MonoBehaviour, IStateable
 
 	void TypedWord()
 	{
-		TypeUI.instance.Clear();
+		
 
 		canType = false;
 
@@ -145,14 +158,7 @@ public class TypeManager : MonoBehaviour, IStateable
 		learningWord.UpdateStats();
 		timeToType = 0f;
 		wasTyping = false;
-		Clear();
+        Clear();
 	}
 
-	IEnumerator TypeTimer()
-	{
-		yield return new WaitForSeconds(typeTimer);
-
-		TypedWord();
-
-	}
 }

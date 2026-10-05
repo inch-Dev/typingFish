@@ -25,6 +25,7 @@ public class SessionManager : MonoBehaviour, IStateable
     [SerializeField] float sessionTimeSeconds;
     float sessionSecondsElapsed;
     bool isCountingTimer = true;
+
     private void Start()
     {
         if (instance == null)
@@ -41,6 +42,7 @@ public class SessionManager : MonoBehaviour, IStateable
 
             if (sessionSecondsElapsed >= sessionTimeSeconds)
                 EndSession();
+            
         }
     }
 

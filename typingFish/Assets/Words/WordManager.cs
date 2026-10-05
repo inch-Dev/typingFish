@@ -5,8 +5,28 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class WordManager : MonoBehaviour
+public class WordManager : MonoBehaviour, IStateable
 {
+    public void HandleState()
+    {
+        switch(GameManager.instance.GetState())
+        {
+            case GameState.PAUSED:
+                wasPaused = true;
+                countingSeconds = false;
+                break;
+            case GameState.FISHING:
+                if (!wasPaused)
+                    SetLearningDifficulty(WordDifficulty.EASY);
+                countingSeconds = true;
+                wasPaused = false;
+                break;
+            default:
+                countingSeconds = false;
+                break;
+        }
+    }
+    
     public static WordManager instance;
 
     string[] wordGuids;
@@ -20,7 +40,21 @@ public class WordManager : MonoBehaviour
     [SerializeField] int learnThreshold = 0;
 
     WordDifficulty learningDifficulty = WordDifficulty.EASY;
+
     public WordDifficulty GetLearningDifficulty() { return learningDifficulty; }
+
+    public void SetLearningDifficulty(WordDifficulty newDifficulty)
+    {
+        Debug.Log($"Setting difficulty to {newDifficulty}");
+        learningDifficulty = newDifficulty; 
+    }
+
+    bool countingSeconds;
+    float elapsedLearningSeconds = 0;
+    [SerializeField] float difficultyIncreaseThresholdSeconds;
+    bool shouldIncreaseLearningDifficulty;
+
+    bool wasPaused;
 
 	#region GET WORD
 	public Word GetWord(string wordValue)
@@ -131,7 +165,7 @@ public class WordManager : MonoBehaviour
         if (hasLearned)
             return GetRandomWord(wordDifficulty, learnedWords);
         else
-            return GetRandomWord(learningWords);
+            return GetRandomWord(wordDifficulty);
     }
 
     public Word GetRandomWord(WordDifficulty wordDifficulty, List<Word> wordList)
@@ -169,28 +203,9 @@ public class WordManager : MonoBehaviour
 
     public Word GetRandomLearningWord()
     {
-        Word learningWord;
+        Debug.Log($"Getting word of {learningDifficulty} difficulty");
+        return GetRandomWord(false, learningDifficulty);
 
-        List<Word> learningWordOptions = new List<Word>();
-
-        for(int i = 0; i <= (int)learningDifficulty; i++)
-        {
-            Debug.Log($"Looking for difficulty {(WordDifficulty)i}");
-            learningWordOptions.Add(GetRandomWord(false, (WordDifficulty)i));
-            
-        }
-
-        if (learningWordOptions.Count > 1)
-        {
-            int randomIndex = Random.Range(0, learningWordOptions.Count);
-
-            learningWord = learningWordOptions[randomIndex];
-        }
-        else
-            learningWord = learningWordOptions[0];
-
-
-            return learningWord;
     }
 
     #endregion
@@ -299,11 +314,6 @@ public class WordManager : MonoBehaviour
         if(!learnedWords.Contains(word))
             learnedWords.Add(word);
 
-        List<Word> learnedWordsOfDifficulty = GetWords(learningDifficulty, learnedWords);
-        List<Word> allWordsOfDifficulty = GetWords(learningDifficulty);
-        float learnPercent = ((float)learnedWordsOfDifficulty.Count) / ((float)allWordsOfDifficulty.Count);
-        if (learnPercent >= .5)
-            learningDifficulty++;
     }
 	void ClearWords()
     {
@@ -345,6 +355,17 @@ public class WordManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(countingSeconds && !shouldIncreaseLearningDifficulty)
+        {
+            elapsedLearningSeconds += Time.deltaTime;
+            if (elapsedLearningSeconds >= difficultyIncreaseThresholdSeconds)
+            {
+                if ((int)learningDifficulty + 1 < (int)WordDifficulty.NUM_DIFFICULTIES)
+                    SetLearningDifficulty(learningDifficulty + 1);
+                shouldIncreaseLearningDifficulty = false;
+                elapsedLearningSeconds = 0;
+            }
+
+        }
     }
 }

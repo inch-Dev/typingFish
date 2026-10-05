@@ -6,6 +6,7 @@ public enum WordDifficulty
     EASY,
     MEDIUM,
     HARD,
+    NUM_DIFFICULTIES
 }
 
 [CreateAssetMenu(fileName = "Word", menuName = "ScriptableObjects/Word", order = 1)]

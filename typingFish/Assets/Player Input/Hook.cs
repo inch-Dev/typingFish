@@ -58,7 +58,7 @@ public class Hook : MonoBehaviour, IStateable
 	bool isMoving = false;
 
 	Rigidbody2D rb;
-	CircleCollider2D circleCollider;
+	Collider2D collider;
 	LineRenderer lineRenderer;
 	[SerializeField] SpriteRenderer spriteRenderer;
 
@@ -68,7 +68,7 @@ public class Hook : MonoBehaviour, IStateable
 			instance = this;
 
 		rb = GetComponent<Rigidbody2D>();
-		circleCollider = GetComponent<CircleCollider2D>();
+		collider = GetComponent<Collider2D>();
 		spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 		lineRenderer = GetComponentInChildren<LineRenderer>();
 
@@ -127,7 +127,7 @@ public class Hook : MonoBehaviour, IStateable
 
 	void ToggleLogic(bool isOn)
 	{
-        circleCollider.enabled = isOn;
+        collider.enabled = isOn;
         rb.simulated = isOn;
 		isMoving = isOn;
     }

@@ -116,8 +116,9 @@ public class Hook : MonoBehaviour, IStateable
 
     void Move(float moveSpeed)
     {
-		transform.position += new Vector3(moveSpeed, 0f, 0f);
-		transform.position = new Vector3(Mathf.Clamp(transform.position.x, horizontalRangeClamp.x, horizontalRangeClamp.y), transform.position.y, 0f);
+		rb.AddForce(new Vector2(moveSpeed, 0f));
+		//transform.position += new Vector3(moveSpeed, 0f, 0f);
+		//transform.position = new Vector3(Mathf.Clamp(transform.position.x, horizontalRangeClamp.x, horizontalRangeClamp.y), transform.position.y, 0f);
 	}
 	void Toggle(bool isOn)
 	{

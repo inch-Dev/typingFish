@@ -20,6 +20,7 @@ public class PlayerCamera : MonoBehaviour, IStateable
     }
 
     bool isFollowingPlayer = false;
+    [SerializeField] float yFollowOffset;
     [SerializeField] GameObject hook;
 
 
@@ -43,6 +44,6 @@ public class PlayerCamera : MonoBehaviour, IStateable
 
 	void FollowPlayer()
     {
-        transform.position = new Vector3(hook.transform.position.x, hook.transform.position.y, -10f);
+        transform.position = new Vector3(hook.transform.position.x, hook.transform.position.y + yFollowOffset, -10f);
 	}
 }

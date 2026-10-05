@@ -79,7 +79,7 @@ MonoBehaviour:
   castingTime: 0
   castingSpeed: 0
   horizontalRangeClamp: {x: -5, y: 5}
-  horizontalMoveSpeed: 0.1
+  horizontalMoveSpeed: 9
   hookLineOriginPosition: {x: 0, y: 2, z: 0}
   hookLineConnectPositionOffset: {x: 0, y: 0, z: 0}
   spriteRenderer: {fileID: 0}

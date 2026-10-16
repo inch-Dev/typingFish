@@ -48,6 +48,7 @@ public class Mouse : MonoBehaviour, IStateable
     {
         if (instance == null)
             instance = this;
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

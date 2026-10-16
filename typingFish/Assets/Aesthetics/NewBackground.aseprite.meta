@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e03b3bf1a84069d4f83adf6caedb7607
+guid: d9386e0d87688bd499f1edc40f86b8d0
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -101,7 +101,7 @@ ScriptedImporter:
     addShadowCasters: 0
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
-  platformSettingsDirtyTick: 639261149923670058
+  platformSettingsDirtyTick: 639276924009154706
   singleSpriteImportData:
   - name: 
     originalName: 
@@ -125,7 +125,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Background
+  - name: NewBackground
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -135,9 +135,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 1600
-      height: 1600
-    spriteID: 57bda6da4e616f44b890f3edd558a750
+      width: 256
+      height: 640
+    spriteID: 4e32b4b733c5a0c44a468e04e3cb9849
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -151,25 +151,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 332801758
+      value0: 2953700120
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Background
+    name: NewBackground
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Background
+    - name: NewBackground
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
-        width: 1600
-        height: 1600
-      spriteId: 57bda6da4e616f44b890f3edd558a750
+        width: 256
+        height: 640
+      spriteId: 4e32b4b733c5a0c44a468e04e3cb9849
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -202,5 +202,5 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   generatePhysicsShape: 0
   secondarySpriteTextures: []
-  previousTextureSize: {x: 2048, y: 2048}
-  canvasSize: {x: 1600, y: 1600}
+  previousTextureSize: {x: 512, y: 1024}
+  canvasSize: {x: 256, y: 640}

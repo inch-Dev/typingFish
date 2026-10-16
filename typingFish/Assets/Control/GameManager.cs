@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         lastState = curState;
         curState = state;
 
-        //Debug.Log($"Setting state to {curState}");
+        Debug.Log($"Setting state to {curState}");
         foreach(IStateable stateable in stateables)
         {
             stateable.HandleState();
@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
         {
             if (curState == GameState.PAUSED)
                 SetState(lastState);
-            else
+            else if (curState != GameState.START)
                 SetState(GameState.PAUSED);
         }
     }

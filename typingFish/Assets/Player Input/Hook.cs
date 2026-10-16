@@ -14,13 +14,15 @@ public class Hook : MonoBehaviour, IStateable
 				Toggle(true);
 				break;
 			case GameState.CASTING:
+				
 				Toggle(true);
 				isMoving = true;
 
 				if(!wasCasting)
                     MoveToCastPosition();
 
-                wasCasting = true;
+				rb.linearVelocityX = 0;
+				wasCasting = true;
 				isCasting = true;
 				
 				break;
@@ -111,6 +113,13 @@ public class Hook : MonoBehaviour, IStateable
 			{
 				Move(horizontalMoveSpeed);
 			}
+
+			if (rb.transform.position.x < horizontalRangeClamp.x)
+			{
+				rb.transform.position = new Vector2(horizontalRangeClamp.x, rb.transform.position.y);
+			}
+			else if (rb.transform.position.x > horizontalRangeClamp.y)
+				rb.transform.position = new Vector2(horizontalRangeClamp.y, rb.transform.position.y);
 		}
 	}
 
@@ -118,7 +127,6 @@ public class Hook : MonoBehaviour, IStateable
     {
 		rb.AddForce(new Vector2(moveSpeed, 0f));
 		//transform.position += new Vector3(moveSpeed, 0f, 0f);
-		//transform.position = new Vector3(Mathf.Clamp(transform.position.x, horizontalRangeClamp.x, horizontalRangeClamp.y), transform.position.y, 0f);
 	}
 	void Toggle(bool isOn)
 	{

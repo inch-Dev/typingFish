@@ -22,7 +22,6 @@ public class Mouse : MonoBehaviour, IStateable
                 Cursor.visible = false;
                 break;
             case MouseState.MOUSE:
-                Cursor.visible = true;
                 break;
         }
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum GameState
 {
@@ -18,6 +19,9 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    [SerializeField] GameObject pauseUIStart;
+    [SerializeField] GameObject endUIStart;
 
     GameState curState = GameState.NULL;
     GameState lastState;
@@ -56,6 +60,17 @@ public class GameManager : MonoBehaviour
             stateable.HandleState();
         }
 
+        switch (curState)
+        {
+            case GameState.PAUSED:
+                EventSystem.current.SetSelectedGameObject(pauseUIStart);
+            break;
+            case GameState.SESSION_OVER:
+                EventSystem.current.SetSelectedGameObject(endUIStart);
+                break;
+        }
+
+
     }
 
     public void Unpause()
@@ -84,7 +99,7 @@ public class GameManager : MonoBehaviour
         {
             if (curState == GameState.PAUSED)
                 SetState(lastState);
-            else if (curState != GameState.START)
+            else if (curState != GameState.START && curState != GameState.SESSION_OVER)
                 SetState(GameState.PAUSED);
         }
     }

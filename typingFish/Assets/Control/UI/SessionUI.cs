@@ -5,10 +5,8 @@ public class SessionUI : UI
 {
     [HideInInspector] public static SessionUI instance;
     [SerializeField] TextMeshProUGUI sessionTF;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-	// Update is called once per frame
-	void Update()
+    
+    void Start()
     {
 		if (instance == null)
 			instance = this;

@@ -213,7 +213,7 @@ public class FishManager : MonoBehaviour, IStateable
 
     void ClearFish()
     {
-        allFishData.Clear();
+        //allFishData.Clear();
         wildFishData.Clear();
         caughtFishData.Clear();
         SetCatchingFish(null);
@@ -223,7 +223,7 @@ public class FishManager : MonoBehaviour, IStateable
     {
         ClearFish();
 
-		fishGuids = AssetDatabase.FindAssets("t:FishData");
+		/*fishGuids = AssetDatabase.FindAssets("t:FishData");
 
 		foreach (string guid in fishGuids)
 		{
@@ -236,7 +236,7 @@ public class FishManager : MonoBehaviour, IStateable
                 caughtFishData.Add(newFishData);
             else
                 wildFishData.Add(newFishData);
-		}
+		}*/
 	}
 
 	private void Start()

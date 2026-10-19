@@ -64,6 +64,15 @@ public class Hook : MonoBehaviour, IStateable
 	LineRenderer lineRenderer;
 	[SerializeField] SpriteRenderer spriteRenderer;
 
+
+	private void Awake()
+	{
+		rb = GetComponent<Rigidbody2D>();
+		collider = GetComponent<Collider2D>();
+		spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+		lineRenderer = GetComponentInChildren<LineRenderer>();
+	}
+
 	private void Start()
 	{
 		if (instance == null)

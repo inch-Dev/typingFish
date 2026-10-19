@@ -1,7 +1,4 @@
 using System.Collections.Generic;
-using JetBrains.Annotations;
-using NUnit.Framework;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -317,7 +314,7 @@ public class WordManager : MonoBehaviour, IStateable
     }
 	void ClearWords()
     {
-        allWords.Clear();
+        //allWords.Clear();
         learnedWords.Clear();
         learningWords.Clear();
     }
@@ -327,7 +324,7 @@ public class WordManager : MonoBehaviour, IStateable
     {
         ClearWords();
 
-        wordGuids = AssetDatabase.FindAssets("t:Word");
+        /*wordGuids = AssetDatabase.FindAssets("t:Word");
 
 		foreach (string guid in wordGuids)
         {
@@ -340,7 +337,7 @@ public class WordManager : MonoBehaviour, IStateable
                 learnedWords.Add(newWord);
             else if(newWord.difficulty <= learningDifficulty)
                 learningWords.Add(newWord);
-        }
+        }*/
     }
 
 

@@ -134,7 +134,7 @@ public class TypeManager : MonoBehaviour, IStateable
 
 	void ChooseLearningWord()
 	{
-		SetLearningWord(WordManager.instance.GetRandomLearningWord());
+		SetLearningWord(WordManager.instance.GetRandomWord(FishManager.instance.GetCatchingFish()));
 	}
 
 	void TypedWord()

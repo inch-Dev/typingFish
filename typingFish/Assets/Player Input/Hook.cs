@@ -164,9 +164,10 @@ public class Hook : MonoBehaviour, IStateable
     {
         if (collision.gameObject.GetComponentInParent<Fish>())
         {
+            FishManager.instance.SetCatchingFish(collision.gameObject.GetComponentInParent<Fish>());
             GameManager.instance.SetState(GameState.TYPING);
             collision.gameObject.GetComponentInParent<Fish>().SetMove(false);
-            FishManager.instance.SetCatchingFish(collision.gameObject.GetComponentInParent<Fish>());
+            
         }
     }
 }

@@ -198,6 +198,20 @@ public class WordManager : MonoBehaviour, IStateable
         return wordList[index];
     }
 
+    public Word GetRandomWord(Fish catchingFish)
+    {
+        switch (catchingFish.fishData.fishSize)
+        {
+            case FishSize.SMALL:
+                return GetRandomWord(WordDifficulty.EASY);
+            case FishSize.MEDIUM:
+                return GetRandomWord(WordDifficulty.MEDIUM);
+            case FishSize.LARGE:
+                return GetRandomWord(WordDifficulty.HARD);
+        }
+        return null;
+    }
+
     public Word GetRandomLearningWord()
     {
         Debug.Log($"Getting word of {learningDifficulty} difficulty");

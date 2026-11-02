@@ -4,18 +4,37 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TypeUI : UI
+public class TypeUI : UI, IStateable
 {
+
+    public void HandleState()
+    {
+        switch (GameManager.instance.GetState())
+        {
+            case GameState.CASTING:
+            case GameState.FISHING:
+                Toggle(false);
+                break;
+            case GameState.TYPING:
+                Toggle(true);
+                break;
+            case GameState.PAUSED:
+            case GameState.SESSION_OVER:
+                break;
+        }
+    }
     public static TypeUI instance;
     [SerializeField] TextMeshProUGUI wordTF;
     [SerializeField] TextMeshProUGUI typeTF;
     [SerializeField] TMP_Text typeText;
     [SerializeField] Slider timeSlider;
+    Animator animator;
 
 	private void Start()
 	{
         if (instance == null)
             instance = this;
+        animator = GetComponent<Animator>();
 	}
 
 	public void Clear()
@@ -31,6 +50,7 @@ public class TypeUI : UI
         //Debug.Log("DisplayingTimer...");
         timeSlider.maxValue = TypeManager.instance.GetTypeTimer();
         timeSlider.value = TypeManager.instance.GetTimeToType();
+        Debug.Log($"Displaying timer:{timeSlider.value}");
 
         //Debug.Log("Timer Values...Max:{timeSlider.maxValue}, Value:{timeSlider.value}");
     }
@@ -123,4 +143,9 @@ public class TypeUI : UI
         typeText.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
 
 	}
+
+    public void DisplayPoints()
+    {
+        animator.Play("TypedWord");
+    }
 }

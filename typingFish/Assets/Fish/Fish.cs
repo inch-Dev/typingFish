@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 
 
@@ -25,6 +26,7 @@ public class Fish : MonoBehaviour, IStateable
     float fishingResetYPosition;
     bool canMove = true;
     bool isBeingCaught = false;
+    bool isCaught;
 
     public void SetMove(bool move) { canMove = move; }
 	public void HandleState()
@@ -91,14 +93,24 @@ public class Fish : MonoBehaviour, IStateable
 
     public void Caught()
     {
+        isCaught = true;
         animator.SetTrigger("isCaught");
     }
 
     void DestroySelf()
     {
         TypeUI.instance.Clear();
-        //GameManager.instance.SetState(GameState.CASTING);
-        Destroy(gameObject);
+        switch (isCaught)
+        {
+            case true:
+                GameManager.instance.SetState(GameState.CASTING);
+                Destroy(gameObject);
+                break;
+            case false:
+                GameManager.instance.SetState(GameState.FISHING);
+                Destroy(gameObject);
+                break;
+        }
     }
 
 }

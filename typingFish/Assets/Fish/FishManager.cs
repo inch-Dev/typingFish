@@ -178,6 +178,7 @@ public class FishManager : MonoBehaviour, IStateable
 
         spawnedFish.Remove(fish);
         fish.Caught();
+        Hook.instance.Catch();
         ScoreManager.instance.CatchFish();
         ScoreManager.instance.SetFishCaughtSize(fish.fishData.fishSize);
         SpawnFish();

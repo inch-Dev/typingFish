@@ -149,6 +149,7 @@ public class TypeManager : MonoBehaviour, IStateable
 			ScoreManager.instance.SetScoredWordDifficulty(learningWord.difficulty);
 			WordManager.instance.TypedWord(learningWord);
 			FishManager.instance.CatchFish();
+			TypeUI.instance.DisplayPoints();
 		}
 
 		else

@@ -14,8 +14,8 @@ public class Hook : MonoBehaviour, IStateable
 				Toggle(true);
 				break;
 			case GameState.CASTING:
-				
-				Toggle(true);
+                animator.SetTrigger("isIdle");
+                Toggle(true);
 				isMoving = true;
 
 				if(!wasCasting)
@@ -27,7 +27,8 @@ public class Hook : MonoBehaviour, IStateable
 				
 				break;
 			case GameState.FISHING:
-				isMoving = true;
+                animator.SetTrigger("isIdle");
+                isMoving = true;
 				isCasting = false;
 				castTimeElapsed = 0f;
 				ToggleLogic(true);
@@ -35,7 +36,8 @@ public class Hook : MonoBehaviour, IStateable
 			case GameState.TYPING:
 			case GameState.PAUSED:
 			case GameState.SESSION_OVER:
-				isCasting = false;
+                animator.SetTrigger("isIdle");
+                isCasting = false;
 				ToggleLogic(false);
 				break;
 		}
@@ -63,6 +65,7 @@ public class Hook : MonoBehaviour, IStateable
 	Collider2D collider;
 	LineRenderer lineRenderer;
 	[SerializeField] SpriteRenderer spriteRenderer;
+	Animator animator;
 
 
 	private void Awake()
@@ -71,6 +74,7 @@ public class Hook : MonoBehaviour, IStateable
 		collider = GetComponent<Collider2D>();
 		spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 		lineRenderer = GetComponentInChildren<LineRenderer>();
+		animator = GetComponentInParent<Animator>();
 	}
 
 	private void Start()
@@ -107,9 +111,6 @@ public class Hook : MonoBehaviour, IStateable
 				wasCasting = false;
 				GameManager.instance.SetState(GameState.FISHING);
 			}
-
-			else
-				CastMove();
 		}
 
 		if(isMoving)
@@ -130,12 +131,15 @@ public class Hook : MonoBehaviour, IStateable
 			}
 			else if (rb.transform.position.x > horizontalRangeClamp.y)
 				rb.transform.position = new Vector2(horizontalRangeClamp.y, rb.transform.position.y);
+			if (isCasting)
+				CastMove();
 		}
 	}
 
     void Move(float moveSpeed)
     {
 		rb.AddForce(new Vector2(moveSpeed, 0f));
+		Debug.Log("Moving");
 		//transform.position += new Vector3(moveSpeed, 0f, 0f);
 	}
 	void Toggle(bool isOn)
@@ -159,6 +163,11 @@ public class Hook : MonoBehaviour, IStateable
 	void CastMove()
 	{
 		transform.position = new Vector3(transform.position.x, transform.position.y + (castingSpeed * Time.fixedDeltaTime), 0f);
+	}
+
+	public void Catch()
+	{
+		animator.Play("Catch");
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)

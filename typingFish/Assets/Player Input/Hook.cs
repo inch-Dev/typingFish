@@ -82,6 +82,7 @@ public class Hook : MonoBehaviour, IStateable
 		collider = GetComponent<Collider2D>();
 		spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 		lineRenderer = GetComponentInChildren<LineRenderer>();
+		rb.linearVelocity = Vector2.zero;
 
 
 	}

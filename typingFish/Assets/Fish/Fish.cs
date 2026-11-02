@@ -97,7 +97,7 @@ public class Fish : MonoBehaviour, IStateable
     void DestroySelf()
     {
         TypeUI.instance.Clear();
-        GameManager.instance.SetState(GameState.CASTING);
+        //GameManager.instance.SetState(GameState.CASTING);
         Destroy(gameObject);
     }
 

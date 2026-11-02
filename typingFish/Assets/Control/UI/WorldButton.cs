@@ -14,7 +14,7 @@ public class WorldButton : MonoBehaviour
 					Quit();
 					break;
 				case 1:
-					Start();
+					StartGame();
 					break;
 			}	
 
@@ -26,7 +26,7 @@ public class WorldButton : MonoBehaviour
 		Application.Quit();
 	}
 
-	public void Start()
+	public void StartGame()
 	{
 		if (GameManager.instance != null)
 		{

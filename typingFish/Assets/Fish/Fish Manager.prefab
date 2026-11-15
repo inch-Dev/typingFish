@@ -44,13 +44,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9937a9ddf84572d43a633d866ac58b5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smallFishPF: {fileID: 4673477447324199675, guid: db8791466ab125b49b7eb1d2a8a6ed37, type: 3}
-  mediumFishPF: {fileID: 8411458820724667952, guid: eb12066b4db1bbb4899a75cab75cbe2b, type: 3}
-  largeFishPF: {fileID: 7896718377489393568, guid: 85f69f127f0ac984c8f1c6d25ea77907, type: 3}
-  allFishData: []
+  smallFishPF: {fileID: 1660797700104921846, guid: 453ca76fbcb652e4fb3510dfb90b3569, type: 3}
+  mediumFishPF: {fileID: 4752377111114398847, guid: 341d78372e31b3349948df3d55a7b8c4, type: 3}
+  largeFishPF: {fileID: 1844268783941312189, guid: b3a713788e5c5b04cb99e91883fca7bb, type: 3}
+  allFishData:
+  - {fileID: 11400000, guid: 137cecc8bc0187245b973fe29d93698c, type: 2}
+  - {fileID: 11400000, guid: bd1b50d34af40d84b9f3ec42f4dec249, type: 2}
+  - {fileID: 11400000, guid: b4caffb09b93cb04488cd77a9b0ead5c, type: 2}
   wildFishData: []
   caughtFishData: []
   spawnedFish: []
-  spawnSideDistances: {x: -5, y: 5}
+  spawnSideDistances: {x: -9, y: 9}
   spawnTimeIntervalSeconds: 1
-  verticalSpawnOffset: 7
+  verticalSpawnOffsetRange: {x: -2, y: -5}
+  _catchSound: {fileID: 0}
+  _missSound: {fileID: 0}
+  _castSound: {fileID: 0}

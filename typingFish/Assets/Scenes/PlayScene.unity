@@ -340,7 +340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3929204055444310979, guid: 5c31ea4496804b04e99bb63dcec13058, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 16777215
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5224166284465134363, guid: 5c31ea4496804b04e99bb63dcec13058, type: 3}
       propertyPath: m_fontSize
@@ -3224,6 +3224,108 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4611912495005522827, guid: f7d3e5107153ff34581eb422f0614375, type: 3}
   m_PrefabInstance: {fileID: 1985980543668675837}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2013581897 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1858187237405690711, guid: 09f6102fef7075044914e2056776e457, type: 3}
+  m_PrefabInstance: {fileID: 5360579009571870752}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &2013581899
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013581897}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2043511028
 GameObject:
   m_ObjectHideFlags: 0
@@ -4224,49 +4326,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 1815799963}
     m_Modifications:
     - target: {fileID: 982339518316915654, guid: 09f6102fef7075044914e2056776e457, type: 3}
-      propertyPath: largeFishPF
+      propertyPath: _castSound
       value: 
-      objectReference: {fileID: 1844268783941312189, guid: b3a713788e5c5b04cb99e91883fca7bb, type: 3}
+      objectReference: {fileID: 8300000, guid: f2345adcd95c179469a5fc985ae9773e, type: 3}
     - target: {fileID: 982339518316915654, guid: 09f6102fef7075044914e2056776e457, type: 3}
-      propertyPath: smallFishPF
+      propertyPath: _missSound
       value: 
-      objectReference: {fileID: 1660797700104921846, guid: 453ca76fbcb652e4fb3510dfb90b3569, type: 3}
+      objectReference: {fileID: 8300000, guid: 659200612fc84ba46af6e9bc95057535, type: 3}
     - target: {fileID: 982339518316915654, guid: 09f6102fef7075044914e2056776e457, type: 3}
-      propertyPath: mediumFishPF
+      propertyPath: _catchSound
       value: 
-      objectReference: {fileID: 4752377111114398847, guid: 341d78372e31b3349948df3d55a7b8c4, type: 3}
+      objectReference: {fileID: 8300000, guid: 9d9df86aea9249f48b4073e5072cab5b, type: 3}
     - target: {fileID: 982339518316915654, guid: 09f6102fef7075044914e2056776e457, type: 3}
-      propertyPath: spawnSideDistances.x
-      value: -9
-      objectReference: {fileID: 0}
-    - target: {fileID: 982339518316915654, guid: 09f6102fef7075044914e2056776e457, type: 3}
-      propertyPath: spawnSideDistances.y
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 982339518316915654, guid: 09f6102fef7075044914e2056776e457, type: 3}
-      propertyPath: allFishData.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 982339518316915654, guid: 09f6102fef7075044914e2056776e457, type: 3}
-      propertyPath: 'allFishData.Array.data[0]'
+      propertyPath: _hitFishSound
       value: 
-      objectReference: {fileID: 11400000, guid: 137cecc8bc0187245b973fe29d93698c, type: 2}
-    - target: {fileID: 982339518316915654, guid: 09f6102fef7075044914e2056776e457, type: 3}
-      propertyPath: 'allFishData.Array.data[1]'
-      value: 
-      objectReference: {fileID: 11400000, guid: bd1b50d34af40d84b9f3ec42f4dec249, type: 2}
-    - target: {fileID: 982339518316915654, guid: 09f6102fef7075044914e2056776e457, type: 3}
-      propertyPath: 'allFishData.Array.data[2]'
-      value: 
-      objectReference: {fileID: 11400000, guid: b4caffb09b93cb04488cd77a9b0ead5c, type: 2}
-    - target: {fileID: 982339518316915654, guid: 09f6102fef7075044914e2056776e457, type: 3}
-      propertyPath: verticalSpawnOffsetRange.x
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 982339518316915654, guid: 09f6102fef7075044914e2056776e457, type: 3}
-      propertyPath: verticalSpawnOffsetRange.y
-      value: -5
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: fb7aa54c39e089747b8d7a12bc8d2bdc, type: 3}
     - target: {fileID: 1858187237405690711, guid: 09f6102fef7075044914e2056776e457, type: 3}
       propertyPath: m_Name
       value: Fish Manager
@@ -4314,7 +4388,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1858187237405690711, guid: 09f6102fef7075044914e2056776e457, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2013581899}
   m_SourcePrefab: {fileID: 100100000, guid: 09f6102fef7075044914e2056776e457, type: 3}
 --- !u!1001 &5551429587000644552
 PrefabInstance:

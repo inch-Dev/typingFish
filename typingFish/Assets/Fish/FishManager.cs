@@ -12,7 +12,7 @@ public class FishManager : MonoBehaviour, IStateable
         switch(GameManager.instance.GetState())
         {
             case GameState.CASTING:
-                //Spawn a bunch of fish
+                AudioSource.PlayClipAtPoint(_castSound, Camera.main.transform.position);
                 isSpawning = true;
                 break;
             case GameState.FISHING:
@@ -46,6 +46,12 @@ public class FishManager : MonoBehaviour, IStateable
     float spawnTimeElapsedSeconds;
     [SerializeField] Vector2 verticalSpawnOffsetRange;
 
+    [Header("Sound")]
+    [SerializeField] AudioClip _catchSound;
+    [SerializeField] AudioClip _missSound;
+    [SerializeField] AudioClip _castSound;
+    [SerializeField] AudioClip _hitFishSound;
+
     Fish catchingFish;
     int _fishCaught;
 
@@ -53,8 +59,11 @@ public class FishManager : MonoBehaviour, IStateable
     public void SetCatchingFish(Fish fish)
     { 
         catchingFish = fish;
-        if(fish != null)
+        if (fish != null)
+        {
+            AudioSource.PlayClipAtPoint(_hitFishSound, Camera.main.transform.position);
             fish.Catching();
+        }
     }
 
     public FishData GetRandomFishData()
@@ -171,6 +180,8 @@ public class FishManager : MonoBehaviour, IStateable
     public void CatchFish(Fish fish)
     {
         //Debug.Log("Caught!");
+        AudioSource.PlayClipAtPoint(_catchSound, Camera.main.transform.position);
+
         wildFishData.Remove(fish.fishData);
 
         if (!caughtFishData.Contains(fish.fishData))
@@ -192,7 +203,7 @@ public class FishManager : MonoBehaviour, IStateable
 
     public void MissFish(Fish fish)
     {
-        //Debug.Log("Missed!");
+        AudioSource.PlayClipAtPoint(_missSound, Camera.main.transform.position);
         spawnedFish.Remove(fish);
         fish.Missed();
         SpawnFish();

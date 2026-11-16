@@ -29,8 +29,27 @@ public class FishManager : MonoBehaviour, IStateable
     string[] fishGuids;
 
     [SerializeField] GameObject smallFishPF;
+
+    [SerializeField] List<GameObject> smallFishPFs;
+    Fish GetRandomSmallFish()
+    {
+        int randomIndex = Random.Range(0, smallFishPFs.Count);
+        return smallFishPFs[randomIndex].GetComponent<Fish>();
+    }
     [SerializeField] GameObject mediumFishPF;
-    [SerializeField] GameObject largeFishPF;
+    [SerializeField] List<GameObject> mediumFishPFs;
+	Fish GetRandomMediumFish()
+	{
+		int randomIndex = Random.Range(0, mediumFishPFs.Count);
+		return mediumFishPFs[randomIndex].GetComponent<Fish>();
+	}
+	[SerializeField] GameObject largeFishPF;
+    [SerializeField] List<GameObject> largeFishPFs;
+    Fish GetRandomLargeFish()
+    {
+        int randomIndex = Random.Range(0, largeFishPFs.Count);
+        return largeFishPFs[randomIndex].GetComponent<Fish>();
+    }
 
     [SerializeField] List<FishData> allFishData;
 
@@ -107,13 +126,13 @@ public class FishManager : MonoBehaviour, IStateable
         switch(fishData.fishSize)
         {
             case FishSize.SMALL:
-                prefab = smallFishPF;
+                prefab = GetRandomSmallFish().gameObject;
                 break;
             case FishSize.MEDIUM:
-                prefab = mediumFishPF;
+                prefab = GetRandomMediumFish().gameObject;
                 break;
             case FishSize.LARGE:
-                prefab = largeFishPF;
+                prefab = GetRandomLargeFish().gameObject;
                 break;
         }
 
@@ -190,7 +209,6 @@ public class FishManager : MonoBehaviour, IStateable
         spawnedFish.Remove(fish);
         fish.Caught();
         Hook.instance.Catch();
-        ScoreManager.instance.CatchFish();
         ScoreManager.instance.SetFishCaughtSize(fish.fishData.fishSize);
         SpawnFish();
     }

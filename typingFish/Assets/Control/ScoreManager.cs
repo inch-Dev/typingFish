@@ -8,10 +8,32 @@ public class ScoreManager : MonoBehaviour
     int _score;
     int _fishCaught = 0;
 
-    public void CatchFish()
+    int _wordsAttempted = 0;
+    float _accuracy = 0;
+    void UpdateAccuracy()
+    {
+        _accuracy = (float)_fishCaught /(float) _wordsAttempted;
+        Debug.Log($"Accuracy:{_accuracy}");
+    }
+    string fastestWord;
+    float fastestTime;
+
+    public void AttemptWord()
+    {
+        _wordsAttempted++;
+    }
+
+
+    public void TypeWord()
     {
         _fishCaught++;
         ScoreUI.instance.DisplayFishCaught(_fishCaught);
+        UpdateAccuracy();
+    }
+
+    public void MissWord()
+    {
+        UpdateAccuracy();
     }
 
     float _currentScoredWordDifficultyMult;

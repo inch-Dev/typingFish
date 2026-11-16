@@ -53,8 +53,8 @@ public class TypeManager : MonoBehaviour, IStateable
         typeInput = "";
 
         TypeUI.instance.DisplayWord(newWord.value);
-		
 
+		ScoreManager.instance.AttemptWord();
 		learningWord.timesEncountered++;
 	}
 
@@ -147,6 +147,7 @@ public class TypeManager : MonoBehaviour, IStateable
 		{
 			learningWord.speed += timeToType;
 			ScoreManager.instance.SetScoredWordDifficulty(learningWord.difficulty);
+			ScoreManager.instance.TypeWord();
 			WordManager.instance.TypedWord(learningWord);
 			FishManager.instance.CatchFish();
 			TypeUI.instance.DisplayPoints();
@@ -154,6 +155,7 @@ public class TypeManager : MonoBehaviour, IStateable
 
 		else
 		{
+			ScoreManager.instance.MissWord();
 			FishManager.instance.MissFish();
 		}
 		learningWord.UpdateStats();

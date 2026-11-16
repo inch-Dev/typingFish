@@ -21,11 +21,10 @@ public class SessionManager : MonoBehaviour, IStateable
 
 
 
-    public static SessionManager instance;
+    [HideInInspector] public static SessionManager instance;
     [SerializeField] float sessionTimeSeconds;
     float sessionSecondsElapsed;
     bool isCountingTimer = true;
-
     private void Start()
     {
         if (instance == null)
@@ -50,5 +49,7 @@ public class SessionManager : MonoBehaviour, IStateable
     {
         Debug.Log("Session is over!");
         GameManager.instance.SetState(GameState.SESSION_OVER);
+
+        //Display Stats
     }
 }
